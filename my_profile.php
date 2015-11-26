@@ -1,13 +1,44 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<!--[if IE 7]><html class="ie ie7" lang="en"><![endif]-->
+<!--[if IE 8]><html class="ie ie8" lang="en"><![endif]-->
+<!--[if IE 9]><html class="ie ie9" lang="en"><![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
 
 <head>
-    <meta charset="UTF-8">
-    <title>My Profile</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="author" content="Title">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    <link rel="stylesheet" href="base.css">
+
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" type="text/css" href="static/css/ie.css" />
+  <![endif]-->
+
+    <script src="static/js/lib/modernizr.js"></script>
+
+    <title>H&amp;L</title>
 </head>
 
 <body>
-    <h1>My MorpheusPets Profile</h1>
+
+    <div id="container">
+
+
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="static/js/lib/jquery.js"><\/script>')
+    </script>
+    <script src="static/js/plugins.js"></script>
+    <script src="static/js/base.js"></script>
+
 </body>
 
 </html>

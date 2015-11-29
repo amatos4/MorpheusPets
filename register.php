@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en-US">
 
-<head>
+  <head>
     <meta charset="UTF-8">
     <title>Register - MorpheusPets</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <h1>Register your account</h1>
-</body>
+  </body>
 
 </html>

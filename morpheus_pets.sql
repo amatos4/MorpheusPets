@@ -2,8 +2,8 @@
 -- version 4.4.14
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 26, 2015 at 07:54 AM
+-- Host: localhost
+-- Generation Time: Nov 29, 2015 at 06:05 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `morpheus_pets`
 --
+CREATE DATABASE IF NOT EXISTS `morpheus_pets` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `morpheus_pets`;
 
 -- --------------------------------------------------------
 
@@ -31,20 +33,6 @@ CREATE TABLE IF NOT EXISTS `species` (
   `species` varchar(100) NOT NULL,
   `type` varchar(100) NOT NULL,
   `stats` char(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `password_hash` char(128) NOT NULL,
-  `email_address` varchar(320) NOT NULL,
-  `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -68,6 +56,20 @@ CREATE TABLE IF NOT EXISTS `user_pets` (
   `owner_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `email_address` varchar(320) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Indexes for dumped tables
 --
@@ -79,18 +81,18 @@ ALTER TABLE `species`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `user_pets`
 --
 ALTER TABLE `user_pets`
   ADD PRIMARY KEY (`id`),
   ADD KEY `species_id` (`species_id`),
   ADD KEY `owner_id` (`owner_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -102,14 +104,14 @@ ALTER TABLE `user_pets`
 ALTER TABLE `species`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `user_pets`
 --
 ALTER TABLE `user_pets`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables

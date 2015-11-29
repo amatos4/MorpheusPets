@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en-US">
 
-<head>
+  <head>
     <meta charset="UTF-8">
     <title>MorpheusPets - Home</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <h1>Welcome to MorpheusPets</h1>
-</body>
+  </body>
 
 </html>

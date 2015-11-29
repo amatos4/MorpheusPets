@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en-US">
 
-<head>
+  <head>
     <meta charset="UTF-8">
     <title>Login toyour Profile</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <h1>Login</h1>
-</body>
+  </body>
 
 </html>

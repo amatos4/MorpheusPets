@@ -1,0 +1,135 @@
+/* reset */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, address, cite, code, em, img, small, strong, sub, sup,
+dl, dt, dd, ol, ul, li,
+fieldset, form, legend, label, input, textarea, select, button,
+table, caption, thead, tbody, tfoot, tr, th, td {
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, audio, canvas, video { display: block; }
+h1, h2, h3, h4, h5, h6 { font-weight: normal; line-height: normal; }
+address, cite, code, em, strong { font-style: normal; font-weight: normal; }
+ol, ul { list-style: none; }
+table { border-collapse: collapse; border-spacing: 0; }
+input, textarea, select, button { display: block; resize: none; }
+img { display: block; max-width: 100%; }
+html { height: 100%; }
+
+*, *:before, *:after { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+/* clearfixes */
+.clear:after,
+.wrapper:after,
+nav ul:after { clear: both; content: ""; display: block; height: 0; visibility: hidden; }
+
+/* styles */
+body {
+  background: #fff;
+  color: #000;
+  font: 14px/21px Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  height: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+a:hover { color: #252525; }
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1024px;
+  position: relative;
+  width: 93.75%;
+}
+
+/* retina device detection */
+@media only screen and (min--moz-device-pixel-ratio: 2),
+only screen and (-o-min-device-pixel-ratio: 2/1),
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min-device-pixel-ratio: 2) {
+
+}
+
+/* media queries */
+@media screen and (max-width: 1024px) {
+
+}
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 640px) {
+
+}
+
+@media screen and (max-width: 400px) {
+
+}
+
+/*Navigation Bar CSS*/
+nav {
+    margin: 0;
+    background-color: #333;
+    overflow: hidden;
+}
+nav ul {
+    margin-left: 2%;
+    padding: 0;
+}
+nav ul li {
+    display: inline-block;
+    list-style-type: none;
+}
+nav > ul > li > a {
+    color: #e6e6e6;
+    background-color:#333;
+    display: block;
+    line-height: 2em;
+    padding: 0.5em 1em;
+    text-decoration: none;
+}
+nav > ul > li > a:hover {
+     color: #FFF;  
+}
+.logout {
+    float:right;
+}
+/*Main Content*/
+#container {
+    width: 80%;
+    margin: 30px auto;
+    overflow: hidden;
+}
+.profile-badge {
+    margin: 20px;
+}
+
+.pet-badge {
+    float: left;
+    width: 29%;
+    margin: 2% 2% 50px 2%;
+}
+.pet-badge h1 {
+    padding: 10px;
+    text-transform: uppercase;
+    font-size: 1.5em;
+}
+.pet-badge p {
+    padding: 10px;
+}
+.pet-badge img {
+    max-width: 100%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}

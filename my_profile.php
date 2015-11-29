@@ -13,21 +13,67 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
-    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="simple.css">
 
     <!--[if lte IE 8]>
     <link rel="stylesheet" type="text/css" href="static/css/ie.css" />
   <![endif]-->
 
     <script src="static/js/lib/modernizr.js"></script>
-
-    <title>H&amp;L</title>
+    <title>My MorpheusPets Profile</title>
 </head>
 
 <body>
 
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">My Profile</a></li>
+            <li class="logout"><a href="#">Logout</a></li>
+        </ul>
+    </nav>
+
     <div id="container">
 
+        <section class="profile-badge">
+            <h1>John Smith</h1>
+            <p>About Me...</p>
+        </section>
+
+        <section class="profile-badge">
+            <ul>
+                <li class="pet-badge">
+                    <img src="images/bird.jpg" />
+                    <h1>Parakeet</h1>
+                    <p>This is a fun one.</p>
+                </li>
+                <li class="pet-badge">
+                    <img src="images/city.jpg" />
+                    <h1>Big City</h1>
+                    <p>We all got dreams.</p>
+                </li>
+                <li class="pet-badge">
+                    <img src="images/frog.jpg" />
+                    <h1>Frog Junior</h1>
+                    <p>He packs a punch.</p>
+                </li>
+                <li class="pet-badge">
+                    <img src="images/frog.jpg" />
+                    <h1>Frog Senior</h1>
+                    <p>Mean, Lean, and Green.</p>
+                </li>
+                <li class="pet-badge">
+                    <img src="images/bird.jpg" />
+                    <h1>Bird</h1>
+                    <p>He's a big bird and he does not live on Sesame Street.</p>
+                </li>
+                <li class="pet-badge">
+                    <img src="images/city.jpg" />
+                    <h1>Little City</h1>
+                    <p>Little City Still Pretty Big Dreams.</p>
+                </li>
+            </ul>
+        </section>
 
 
     </div>

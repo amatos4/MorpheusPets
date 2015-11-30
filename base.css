@@ -29,7 +29,7 @@ nav ul:after { clear: both; content: ""; display: block; height: 0; visibility: 
 
 /* styles */
 body {
-  background: #fff;
+  background: #f2f2f2;
   color: #000;
   font: 14px/21px Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -51,6 +51,131 @@ a:hover { color: #252525; }
   width: 93.75%;
 }
 
+nav {
+    background-color: #000033;
+    margin: 0;
+    overflow: hidden;
+}
+
+nav ul{
+    margin: 0px 30px;
+    padding-top: 10px;
+}
+nav ul li {
+    display: inline-block;
+    list-style-type: none;
+    padding: 2px;
+}
+
+nav > ul > li > a {
+    color: #FFF;
+    background-color:#000033;
+    display: block;
+    line-height: 2em;
+    padding: 0.5em 0.5em;
+    text-decoration: none;
+}
+
+nav > ul > li > a:hover {
+    color: #ff5722;
+}
+
+nav ul #search-bar {
+    margin-left: 40px;
+    display: inline-block;
+    padding: 2px;
+}
+
+nav ul #search-button {
+    display: inline-block;
+    padding: 2px;
+}
+
+.logout {
+    float: right;   
+}
+
+#container {
+    width: 80%;
+    margin: 30px auto;
+    overflow: hidden;
+}
+
+.profile-badge {
+    width: 100%;
+}
+
+.profile-badge img {
+    width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-badge article {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-badge h1 {
+    font-size: 2em;   
+    margin-bottom: 10px;
+    color: #ff5722;
+    font-weight: 800;
+    text-align: center;
+}
+
+.profile-badge p {
+    text-align: center;
+}
+
+
+.pet-container {
+    display: block;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.pet-container > h1 {
+    font-size: 2em;   
+    margin-bottom: 10px;
+    color: #ff5722;
+    font-weight: 600; 
+}
+
+.pet-badge {
+    background-color: #FFF;
+    margin: 40px;
+    position: relative;
+    overflow: hidden;
+    width: auto;
+    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+    -mox-box-shadow: 1px 1px 1px 1px #ccc;
+    box-shadow: 1px 1px 1px 1px #ccc;
+}
+
+.pet-badge img {
+    width: 250px;
+    float: left;
+    margin: 0px 15px 0px 0px;
+}
+
+.pet-stats {
+    float: left;   
+}
+
+.pet-stats h1 {
+    text-transform: uppercase;
+    font-size: 1.5em;
+    padding-top: 15px;
+}
+
+.pet-stats p {
+    margin: 10px; 
+}
+
 /* retina device detection */
 @media only screen and (min--moz-device-pixel-ratio: 2),
 only screen and (-o-min-device-pixel-ratio: 2/1),
@@ -61,11 +186,11 @@ only screen and (min-device-pixel-ratio: 2) {
 
 /* media queries */
 @media screen and (max-width: 1024px) {
-
+    
 }
 
 @media screen and (max-width: 768px) {
-
+    
 }
 
 @media screen and (max-width: 640px) {

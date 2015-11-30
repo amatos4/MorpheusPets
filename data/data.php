@@ -284,19 +284,20 @@
     /**
      * Add a user
      *
-     * @param $user User
+     * @param User $user
      *
      * @return mixed|null
      */
     public function addUser( $user )
     {
-      $ret           = null;
-      $user_name     = $user->getUsername();
+      $ret = null;
+
+      $username      = $user->getUsername();
       $password_hash = $user->getPasswordHash();
       $email_address = $user->getEmailAddress();
       $description   = $user->getDescription();
 
-      $this->addUserStatement->bind_param( "ssss", $user_name, $password_hash, $email_address, $description );
+      $this->addUserStatement->bind_param( "ssss", $username, $password_hash, $email_address, $description );
       if ( $this->addUserStatement->execute() )
       {
         $ret = $this->dbConnection->last_insert_id();
@@ -305,26 +306,31 @@
       return $ret;
     }
 
-    /*
+    /**
      * Get a user by id
+     *
+     * @param int $id
+     *
+     * @return null|User
      */
     public function getUser( $id )
     {
-      $ret           = null;
+      $ret = null;
+
       $res_id        = null;
-      $user_name     = null;
+      $username      = null;
       $password_hash = null;
       $email_address = null;
       $description   = null;
 
       $this->getUserStatement->bind_param( "i", $id );
       $this->getUserStatement->execute();
-      $this->getUserStatement->bind_result( $res_id, $user_name, $password_hash, $email_address, $description );
+      $this->getUserStatement->bind_result( $res_id, $username, $password_hash, $email_address, $description );
 
       // Expecting only 1 result
       if ( $this->getUserStatement->fetch() )
       {
-        $ret = new User( $user_name, $email_address, $description );
+        $ret = new User( $username, $email_address, $description );
         $ret->setPasswordHash( $password_hash );
         $ret->setId( $res_id );
 
@@ -335,26 +341,31 @@
       return $ret;
     }
 
-    /*
-     * Get a user by user name
+    /**
+     * Get a user by username
+     *
+     * @param string $username
+     *
+     * @return null|User
      */
-    public function getUserByUserName( $user_name )
+    public function getUserByUserName( $username )
     {
-      $ret           = null;
+      $ret = null;
+
       $id            = null;
-      $res_user_name = null;
+      $res_username  = null;
       $password_hash = null;
       $email_address = null;
       $description   = null;
 
-      $this->getUserByUserNameStatement->bind_param( "s", $user_name );
+      $this->getUserByUserNameStatement->bind_param( "s", $username );
       $this->getUserByUserNameStatement->execute();
-      $this->getUserByUserNameStatement->bind_result( $id, $res_user_name, $password_hash, $email_address, $description );
+      $this->getUserByUserNameStatement->bind_result( $id, $res_username, $password_hash, $email_address, $description );
 
       // Expecting only 1 result
       if ( $this->getUserByUserNameStatement->fetch() )
       {
-        $ret = new User( $res_user_name, $email_address, $description );
+        $ret = new User( $res_username, $email_address, $description );
         $ret->setPasswordHash( $password_hash );
         $ret->setId( $id );
 
@@ -362,6 +373,96 @@
         $this->getUserByUserNameStatement->fetch();
       }
 
+
+      return $ret;
+    }
+
+    /**
+     * Add a species
+     *
+     * @param Species $species
+     *
+     * @return mixed|null
+     */
+    public function addSpecies( $species )
+    {
+      $ret = null;
+
+      $species_name = $species->getSpecies();
+      $type         = $species->getType();
+      $stats        = $species->getStats();
+
+      $this->addSpeciesStatement->bind_param( "sss", $species_name, $type, $stats );
+      if ( $this->addSpeciesStatement->execute() )
+      {
+        $ret = $this->dbConnection->last_insert_id();
+      }
+
+      return $ret;
+    }
+
+    /**
+     * Get a species by id
+     *
+     * @param int $id
+     *
+     * @return null|Species
+     */
+    public function getSpecies( $id )
+    {
+      $ret = null;
+
+      $res_id       = null;
+      $species_name = null;
+      $type         = null;
+      $stats        = null;
+
+      $this->getSpeciesStatement->bind_param( "i", $id );
+      $this->getSpeciesStatement->execute();
+      $this->getSpeciesStatement->bind_result( $res_id, $species_name, $type, $stats );
+
+      // Expecting only 1 result
+      if ( $this->getSpeciesStatement->fetch() )
+      {
+        $ret = new Species( $species_name, $type, $stats );
+        $ret->setId( $res_id );
+
+        // Another fetch to not leave query in progress
+        $this->getSpeciesStatement->fetch();
+      }
+
+      return $ret;
+    }
+
+    /**
+     * Get a species by name
+     *
+     * @param string $name
+     *
+     * @return null|Species
+     */
+    public function getSpeciesByName( $name )
+    {
+      $ret = null;
+
+      $id       = null;
+      $res_name = null;
+      $type     = null;
+      $stats    = null;
+
+      $this->getSpeciesByNameStatement->bind_param( "s", $name );
+      $this->getSpeciesByNameStatement->execute();
+      $this->getSpeciesByNameStatement->bind_result( $id, $res_name, $type, $stats );
+
+      // Expecting only 1 result
+      if ( $this->getSpeciesByNameStatement->fetch() )
+      {
+        $ret = new Species( $res_name, $type, $stats );
+        $ret->setId( $id );
+
+        // Another fetch to not leave query in progress
+        $this->getSpeciesByNameStatement->fetch();
+      }
 
       return $ret;
     }

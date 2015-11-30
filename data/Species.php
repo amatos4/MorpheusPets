@@ -26,7 +26,7 @@
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -34,7 +34,7 @@
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      */
     public function setId( $id )
     {
@@ -42,7 +42,7 @@
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getSpecies()
     {
@@ -50,7 +50,7 @@
     }
 
     /**
-     * @param mixed $species
+     * @param string $species
      */
     public function setSpecies( $species )
     {
@@ -58,7 +58,7 @@
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getType()
     {
@@ -66,7 +66,7 @@
     }
 
     /**
-     * @param mixed $type
+     * @param string $type
      */
     public function setType( $type )
     {
@@ -74,7 +74,7 @@
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getStats()
     {
@@ -82,10 +82,12 @@
     }
 
     /**
-     * @param mixed $stats
+     * @param string $stats
      */
     public function setStats( $stats )
     {
       $this->stats = $stats;
     }
+
+
   }

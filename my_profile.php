@@ -38,6 +38,8 @@
 
     <div id="container">
 
+        <div class="btn">Start Battle!</div>
+        
        <section class="profile-badge">
            <img src="images/avatar_blank.png"/>
            <article class="description">
@@ -50,49 +52,57 @@
             <h1>My Pet Collection</h1>
             <ul>
                 <li class="pet-badge">
-                    <a href="#"><img src="images/bird.jpg" /></a>
+                    <a href="#"><img src="images/shoyru.jpg" /></a>
                     <div class="pet-stats" />
-                        <h1>Parakeet</h1>
-                        <p><b>Species: </b>Charmander</p>
+                        <h1>Blu</h1>
+                        <p><b>Species: </b>Shoyru</p>
                         <p><b>Type: </b> Fire</p>
                         <p><b>Active: </b>Yes</p>
                     </div>
                 </li>
                 <li class="pet-badge">
-                    <img src="images/city.jpg" />
+                    <img src="images/eyrie.jpg" />
                     <div class="pet-stats" />
-                        <h1>Big City</h1>
-                        <p>Species: Squirtle</p>
-                        <p>Type: Water</p>
+                        <h1>Galvitron</h1>
+                        <p><b>Species: </b>Eyrie</p>
+                        <p><b>Type: </b>Flying</p>
+                        <p><b>Active: </b>Yes</p>
                     </div>
                 </li>
                 <li class="pet-badge">
-                    <img src="images/frog.jpg" />
+                    <img src="images/kau.jpg" />
                     <div class="pet-stats" />
-                        <h1>Frog Junior</h1>
-                        <p>Species: Frog</p>
-                        <p>Type: Amphibian</p>
+                        <h1>Bessie</h1>
+                        <p><b>Species: </b>Kau</p>
+                        <p><b>Type: </b>Grass</p>
+                        <p><b>Active: </b>Yes</p>
                     </div>
                 </li>
                 <li class="pet-badge">
-                    <img src="images/frog.jpg" />
+                    <img src="images/kacheek.png" />
                     <div class="pet-stats" />
-                        <h1>Frog Senior</h1>
-                        <p>Mean, Lean, and Green.</p>
+                        <h1>Bun</h1>
+                        <p><b>Species: </b>Kacheek</p>
+                        <p><b>Type: </b>Ground</p>
+                        <p><b>Active: </b>No</p>
                     </div>
                 </li>
                 <li class="pet-badge">
-                    <img src="images/bird.jpg" />
+                    <img src="images/jubjub.jpg" />
                     <div class="pet-stats" />
-                        <h1>Bird</h1>
-                        <p>He's a big bird and he does not live on Sesame Street.</p>
+                        <h1>Fluff</h1>
+                        <p><b>Species: </b>JubJub</p>
+                        <p><b>Type: </b>Poison</p>
+                        <p><b>Active: </b>No</p>
                     </div>
                 </li>
                 <li class="pet-badge">
-                    <img src="images/city.jpg" />
+                    <img src="images/krawk.jpg" />
                     <div class="pet-stats" />
-                        <h1>Little City</h1>
-                        <p>Little City Still Pretty Big Dreams.</p>
+                        <h1>Croc</h1>
+                        <p><b>Species: </b>Krawk</p>
+                        <p><b>Type: </b>Water</p>
+                        <p><b>Active: </b>No</p>
                     </div>
                 </li>
             </ul>

@@ -21,5 +21,15 @@
     <title><?php if ( isset( $data[ 'page_title' ] ) ) echo $data[ 'page_title' ] . " - "; ?>MorpheusPets</title>
   </head>
   <body>
+      
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">My Profile</a></li>
+            <input id="search-bar" name="search" type="text" placeholder="Search...">
+            <input id="search-button" name="search_submit" type="submit" value="Go">
+            <li class="logout"><a href="#">Logout</a></li>
+        </ul>
+    </nav>
 
     <div id="container">

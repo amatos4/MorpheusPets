@@ -10,28 +10,16 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 
-    <link rel="stylesheet" href="static/css/base.css">
+    <link rel="stylesheet" href="css/base.css">
 
     <!--[if lte IE 8]>
-    <link rel="stylesheet" type="text/css" href="static/css/ie.css" />
+    <link rel="stylesheet" type="text/css" href="css/ie.css"/>
     <![endif]-->
 
-    <script src="static/js/lib/modernizr.js"></script>
+    <script src="js/lib/modernizr.js"></script>
 
-    <title>H&amp;L</title>
+    <title><?php if ( isset( $data[ 'page_title' ] ) ) echo $data[ 'page_title' ] . " - "; ?>MorpheusPets</title>
   </head>
   <body>
 
     <div id="container">
-
-
-
-    </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="static/js/lib/jquery.js"><\/script>')</script>
-    <script src="static/js/plugins.js"></script>
-    <script src="static/js/base.js"></script>
-
-  </body>
-</html>

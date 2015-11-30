@@ -1,0 +1,31 @@
+<?php
+  require_once 'viewmodels/ViewModel.php';
+
+  class Home_ViewModel extends ViewModel
+  {
+    // TODO: Update model
+//    // Array of posts
+//    public $posts = [ ];
+//
+//    /*
+//     * Add a post to be shown
+//     */
+//    public function addPost( $post )
+//    {
+//      $this->posts[] = $post;
+//    }
+
+    /*
+     * Render the home page
+     */
+    public function renderHome()
+    {
+      $view_data[ 'page_title' ] = 'Home';
+      $view_data[ 'js' ]         = '<script src="js/index.js"></script>';
+//      $view_data[ 'posts' ]      = $this->posts;
+
+      $this->renderTemplate( 'templates/header.php', $view_data );
+      $this->renderTemplate( 'templates/home_view.php', $view_data );
+      $this->renderTemplate( 'templates/footer.php', $view_data );
+    }
+  }

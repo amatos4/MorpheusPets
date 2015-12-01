@@ -23,6 +23,7 @@
     private $addSpeciesStatement;
     private $getSpeciesStatement;
     private $getSpeciesByNameStatement;
+    private $getAllSpeciesStatement;
     private $updateSpeciesStatement;
 
     private static $instance;
@@ -468,6 +469,35 @@
     }
 
     /**
+     * Get all species
+     *
+     * @return array
+     */
+    public function getAllSpecies()
+    {
+      $ret = [ ];
+
+      // Species variables
+      $id      = null;
+      $species = null;
+      $type    = null;
+      $stats   = null;
+
+      $this->getAllSpeciesStatement->execute();
+      $this->getAllSpeciesStatement->bind_result( $id, $species, $type, $stats );
+
+      while ( $this->getAllSpeciesStatement->fetch() )
+      {
+        $newSpecies = new Species( $species, $type, $stats );
+        $newSpecies->setId( $id );
+
+        array_push( $ret, $newSpecies );
+      }
+
+      return $ret;
+    }
+
+    /**
      * MorpheusPetsData constructor.
      * Initialize prepared statements
      */
@@ -489,6 +519,7 @@
       $this->addSpeciesStatement       = $this->dbConnection->prepare_statement( "INSERT INTO `species` (`species`, `type`, `stats`) VALUES(?, ?, ?)" );
       $this->getSpeciesStatement       = $this->dbConnection->prepare_statement( "SELECT * FROM `species` WHERE `id`=?" );
       $this->getSpeciesByNameStatement = $this->dbConnection->prepare_statement( "SELECT * FROM `species` WHERE `species`=?" );
+      $this->getAllSpeciesStatement    = $this->dbConnection->prepare_statement( "SELECT * FROM `species`" );
       $this->updateSpeciesStatement    = $this->dbConnection->prepare_statement( "UPDATE `species` SET `species`=?, `type`=?, `stats`=? WHERE `id`=?" );
     }
 
@@ -567,6 +598,10 @@
       if ( $this->getSpeciesByNameStatement )
       {
         $this->getSpeciesByNameStatement->close();
+      }
+      if ( $this->getAllSpeciesStatement )
+      {
+        $this->getAllSpeciesStatement->close();
       }
       if ( $this->updateSpeciesStatement )
       {

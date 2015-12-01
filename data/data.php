@@ -166,7 +166,7 @@
 
       $this->getAllPetsForUserStatement->bind_param( "i", $id );
       $this->getAllPetsForUserStatement->execute();
-      $this->getAllPetsForUserStatement->bind_result( $res_id, $owner_id, $species_id, $name, $experience, $brawn, $guts, $essence, $speed, $focus, $grit, $active, $username, $description, $species, $type, $stats );
+      $this->getAllPetsForUserStatement->bind_result( $res_id, $owner_id, $species_id, $name, $experience, $brawn, $guts, $essence, $speed, $focus, $grit, $active, $username, $email_address, $description, $species, $type, $stats );
 
       while ( $this->getAllPetsForUserStatement->fetch() )
       {

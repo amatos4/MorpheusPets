@@ -38,7 +38,7 @@
 
     <div id="container">
 
-        <div class="btn">Start Battle!</div>
+        <div class="btn"><a href="">Start Battle!</a></div>
         
        <section class="profile-badge">
            <img src="images/avatar_blank.png"/>
@@ -61,7 +61,7 @@
                     </div>
                 </li>
                 <li class="pet-badge">
-                    <img src="images/eyrie.jpg" />
+                    <a href="#"><img src="images/eyrie.jpg" /></a>
                     <div class="pet-stats" />
                         <h1>Galvitron</h1>
                         <p><b>Species: </b>Eyrie</p>
@@ -70,7 +70,7 @@
                     </div>
                 </li>
                 <li class="pet-badge">
-                    <img src="images/kau.jpg" />
+                    <a href="#"><img src="images/kau.jpg" /></a>
                     <div class="pet-stats" />
                         <h1>Bessie</h1>
                         <p><b>Species: </b>Kau</p>
@@ -79,7 +79,7 @@
                     </div>
                 </li>
                 <li class="pet-badge">
-                    <img src="images/kacheek.png" />
+                    <a href="#"><img src="images/kacheek.png" /></a>
                     <div class="pet-stats" />
                         <h1>Bun</h1>
                         <p><b>Species: </b>Kacheek</p>
@@ -88,7 +88,7 @@
                     </div>
                 </li>
                 <li class="pet-badge">
-                    <img src="images/jubjub.jpg" />
+                    <a href="#"><img src="images/jubjub.jpg" /></a>
                     <div class="pet-stats" />
                         <h1>Fluff</h1>
                         <p><b>Species: </b>JubJub</p>
@@ -97,7 +97,7 @@
                     </div>
                 </li>
                 <li class="pet-badge">
-                    <img src="images/krawk.jpg" />
+                    <a href="#"><img src="images/krawk.jpg" /></a>
                     <div class="pet-stats" />
                         <h1>Croc</h1>
                         <p><b>Species: </b>Krawk</p>

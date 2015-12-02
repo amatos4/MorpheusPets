@@ -1,6 +1,6 @@
 <?php
 
-  class Pet
+  class Pet implements JsonSerializable
   {
     private $id;
 
@@ -241,4 +241,30 @@
     }
 
 
+    /**
+     * Specify data which should be serialized to JSON
+     * @link  http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+      $array = [
+        'id'         => $this->getId(),
+        'owner_id'   => $this->getOwner()->getId(),
+        'species_id' => $this->getSpecies()->getId(),
+        'name'       => $this->getName(),
+        'experience' => $this->getExperience(),
+        'brawn'      => $this->getBrawn(),
+        'guts'       => $this->getGuts(),
+        'essence'    => $this->getEssence(),
+        'speed'      => $this->getSpeed(),
+        'focus'      => $this->getFocus(),
+        'grit'       => $this->getGrit(),
+        'active'     => $this->isActive()
+      ];
+
+      return $array;
+    }
   }

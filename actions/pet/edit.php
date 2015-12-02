@@ -8,7 +8,7 @@
   $data    = MorpheusPetsData::getInstance();
 
   // POST keys
-  $oet_id_key = 'pet_id';
+  $pet_id_key = 'pet_id';
 
   // Redirect to home page if not logged in
   if ( !$session->isUserLoggedIn() )
@@ -20,7 +20,7 @@
   $loggedInUser = $session->getLoggedInUser();
 
   // Get pet to edit
-  $id_of_pet_to_edit = isset( $_POST[ $oet_id_key ] ) ? intval( $_POST[ $oet_id_key ] ) : 0;
+  $id_of_pet_to_edit = isset( $_GET[ $pet_id_key ] ) ? intval( $_GET[ $pet_id_key ] ) : 0;
   $pet_to_edit       = $id_of_pet_to_edit !== 0 ? $data->getPet( $id_of_pet_to_edit ) : null;
 
   // Get species list

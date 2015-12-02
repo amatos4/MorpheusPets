@@ -53,7 +53,7 @@
         $grit       = $pet->getGrit();
         $active     = intval( $pet->isActive() );
 
-        $this->addPetStatement->bind_param( "iiiiiiiiiii", $owner_id, $species_id, $name, $experience, $brawn, $guts, $essence, $speed, $focus, $grit, $active );
+        $this->addPetStatement->bind_param( "iisiiiiiiii", $owner_id, $species_id, $name, $experience, $brawn, $guts, $essence, $speed, $focus, $grit, $active );
         if ( $this->addPetStatement->execute() )
         {
           $ret = $this->dbConnection->last_insert_id();

@@ -12,6 +12,7 @@
       'r' => 'Grit'
     ];
 
+    /** @var int unique id */
     private $id;
 
     /** @var string species name */
@@ -25,6 +26,9 @@
 
     /** @var string stat priorities using full stat names */
     private $stats_readable;
+
+    /** @var  string URL to image */
+    private $image_url;
 
     /**
      * Species constructor.
@@ -127,6 +131,18 @@
       return $this->stats_readable;
     }
 
+    /**
+     * @return string
+     */
+    public function getImageUrl()
+    {
+      if ( !isset( $this->image_url ) )
+      {
+        $this->image_url = 'images/' . $this->species . '.png';
+      }
+
+      return $this->image_url;
+    }
 
     /**
      * Specify data which should be serialized to JSON
@@ -141,7 +157,8 @@
         'id'            => $this->id,
         'species'       => $this->species,
         'type'          => $this->type,
-        'stat_priority' => $this->getReadableStatPriority()
+        'stat_priority' => $this->getReadableStatPriority(),
+        'image_url'     => $this->getImageUrl()
       ];
 
       return $array;

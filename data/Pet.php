@@ -2,31 +2,41 @@
 
   class Pet implements JsonSerializable
   {
+    /** @var int unique id */
     private $id;
 
+    /** @var User owner */
     private $owner;
 
+    /** @var Species species */
     private $species;
 
+    /** @var string name */
     private $name;
 
+    /** @var int experience level */
     private $experience;
 
+    /** @var int brawn stat */
     private $brawn;
 
+    /** @var int guts stat */
     private $guts;
 
+    /** @var int essence stat */
     private $essence;
 
+    /** @var int speed stat */
     private $speed;
 
+    /** @var int focus stat */
     private $focus;
 
+    /** @var int grit stat */
     private $grit;
 
+    /** @var bool whether pet is active */
     private $active;
-
-    private $image_url;
 
     /**
      * Pet constructor.
@@ -43,6 +53,7 @@
       $this->name       = $name;
       $this->experience = 0;
       $this->brawn      = 0;
+      $this->guts       = 0;
       $this->essence    = 0;
       $this->speed      = 0;
       $this->focus      = 0;
@@ -244,19 +255,6 @@
     }
 
     /**
-     * @return string
-     */
-    public function getImageUrl()
-    {
-      if ( !isset( $this->image_url ) )
-      {
-        $this->image_url = 'images/' . $this->name . '.png';
-      }
-
-      return $this->image_url;
-    }
-
-    /**
      * Specify data which should be serialized to JSON
      * @link  http://php.net/manual/en/jsonserializable.jsonserialize.php
      * @return mixed data which can be serialized by <b>json_encode</b>,
@@ -277,8 +275,7 @@
         'speed'      => $this->speed,
         'focus'      => $this->focus,
         'grit'       => $this->grit,
-        'active'     => $this->active,
-        'image_url'  => $this->image_url
+        'active'     => $this->active
       ];
 
       return $array;

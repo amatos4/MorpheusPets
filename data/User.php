@@ -2,14 +2,19 @@
 
   class User implements JsonSerializable
   {
+    /** @var int unique id */
     private $id;
 
+    /** @var string username */
     private $username;
 
+    /** @var string password hash */
     private $password_hash;
 
+    /** @var string email address */
     private $email_address;
 
+    /** @var string description */
     private $description;
 
     /**

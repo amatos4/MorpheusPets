@@ -61,7 +61,7 @@
       <div class="form-group">
         <label for="pet_species">Species</label>
         <select class="form-control" id="pet_species"
-                name="species" <?php if ( isset( $edit_mode ) ) echo "disabled"; ?>>
+                name="species_id" <?php if ( isset( $edit_mode ) ) echo "disabled"; ?>>
           <option value="0">Select a species</option>
           <?php
             // Display species list if available
@@ -72,7 +72,7 @@
               {
                 ?>
                 <option
-                  value="<?php echo $species->getId(); ?>" <?php if ( isset( $species_id ) && $species_id === $species->getId() ) echo "selected=selected" ?>><?php echo $species->getSpecies(); ?></option>
+                  value="<?php echo $species->getId(); ?>" <?php if ( isset( $species_id ) && $species_id == $species->getId() ) echo "selected=selected" ?>><?php echo $species->getSpecies(); ?></option>
                 <?php
               }
             }

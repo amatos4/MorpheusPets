@@ -187,7 +187,7 @@
 
           $species = $this->data->getSpecies( $sanitized_species_id );
 
-          if ( $species == null )
+          if ( $species === null )
           {
             $view_data[ 'err_species' ] = "Could not find species. Please try again.";
             $errors_found               = true;

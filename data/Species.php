@@ -108,7 +108,7 @@
     /**
      * @return array stat names in order of priority
      */
-    public function getReadableStatPriorities()
+    public function getReadableStatPriority()
     {
       if ( !isset( $this->stats_readable ) )
       {
@@ -138,10 +138,10 @@
     public function jsonSerialize()
     {
       $array = [
-        'id'      => $this->id,
-        'species' => $this->species,
-        'type'    => $this->type,
-        'stats'   => $this->getReadableStatPriorities()
+        'id'            => $this->id,
+        'species'       => $this->species,
+        'type'          => $this->type,
+        'stat_priority' => $this->getReadableStatPriority()
       ];
 
       return $array;

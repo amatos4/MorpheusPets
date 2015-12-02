@@ -74,6 +74,7 @@
             $view_data[ 'active_pets' ] = $this->active_pet_list;
             $view_data[ 'nonactive_pets' ] = $this->nonactive_pet_list;
             $view_data[ 'profile_user' ] = $this->profile_user;
+            $view_data[ 'logged_in_user' ] = $this->logged_in_user;
 
             if($this->logged_in_user == $this->profile_user)
             {
@@ -84,4 +85,5 @@
             $this->renderTemplate( 'templates/profile_view.php', $view_data );
             $this->renderTemplate( 'templates/footer.php', $view_data );
         }
+
     }

@@ -35,8 +35,10 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
             <li><a href="my_profile.php?profileId=<?php echo $logged_in_user->getId() ?>">My Profile</a></li>
             <li class="logout"><a href="logout.php">Logout</a></li>
             <?php endif; ?>
-            <input id="search-bar" name="search" type="text" placeholder="Search...">
-            <input id="search-button" name="search_submit" type="submit" value="Go">
+            <form id="search_form" enctype="multipart/form-data" action="search.php" method="POST">
+                <input id="search-bar" name="search" type="text" placeholder="Search..." required>
+                <input id="search-button" name="search_submit" type="submit" value="Go">
+            </form>
             <?php if ( is_null( $logged_in_user )) : ?>
             <li class="login"><a href="login.php">Login</a></li>
             <li class="register"><a href="register.php">Register</a></li>

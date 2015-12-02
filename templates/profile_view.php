@@ -8,10 +8,11 @@ $non_active_list = isset( $data[ 'nonactive_pets'] ) ? $data[ 'nonactive_pets' ]
 $can_edit_bool = isset( $data[ 'can_edit_profile' ] ) ? $data[ 'can_edit_profile' ] : null;
 /** @var User $profile_user */
 $profile_user = isset( $data[ 'profile_user' ] ) ? $data[ 'profile_user' ] : null;
+$logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ] : null;
 
 ?>
 
-<?php if ($can_edit_bool) : ?>
+<?php if (!$can_edit_bool && !empty($active_list) && !is_null($logged_in_user)) : ?>
 <div class="btn"><a href="">Start Battle!</a></div>
 <?php endif; ?>
 
@@ -26,59 +27,43 @@ $profile_user = isset( $data[ 'profile_user' ] ) ? $data[ 'profile_user' ] : nul
 <section class="pet-container">
     <h1>My Pet Collection</h1>
     <ul>
-        <li class="pet-badge">
-            <a href="#"><img src="images/shoyru.jpg" /></a>
-            <div class="pet-stats" />
-            <h1>Blu</h1>
-            <p><b>Species: </b>Shoyru</p>
-            <p><b>Type: </b> Fire</p>
-            <p><b>Active: </b>Yes</p>
-            </div>
-        </li>
-        <li class="pet-badge">
-            <a href="#"><img src="images/eyrie.jpg" /></a>
-            <div class="pet-stats" />
-            <h1>Galvitron</h1>
-            <p><b>Species: </b>Eyrie</p>
-            <p><b>Type: </b>Flying</p>
-            <p><b>Active: </b>Yes</p>
-            </div>
-        </li>
-        <li class="pet-badge">
-            <a href="#"><img src="images/kau.jpg" /></a>
-            <div class="pet-stats" />
-            <h1>Bessie</h1>
-            <p><b>Species: </b>Kau</p>
-            <p><b>Type: </b>Grass</p>
-            <p><b>Active: </b>Yes</p>
-            </div>
-        </li>
-        <li class="pet-badge">
-            <a href="#"><img src="images/kacheek.png" /></a>
-            <div class="pet-stats" />
-            <h1>Bun</h1>
-            <p><b>Species: </b>Kacheek</p>
-            <p><b>Type: </b>Ground</p>
-            <p><b>Active: </b>No</p>
-            </div>
-        </li>
-        <li class="pet-badge">
-            <a href="#"><img src="images/jubjub.jpg" /></a>
-            <div class="pet-stats" />
-            <h1>Fluff</h1>
-            <p><b>Species: </b>JubJub</p>
-            <p><b>Type: </b>Poison</p>
-            <p><b>Active: </b>No</p>
-            </div>
-        </li>
-        <li class="pet-badge">
-            <a href="#"><img src="images/krawk.jpg" /></a>
-            <div class="pet-stats" />
-            <h1>Croc</h1>
-            <p><b>Species: </b>Krawk</p>
-            <p><b>Type: </b>Water</p>
-            <p><b>Active: </b>No</p>
-            </div>
-        </li>
+        <?php if(!empty($active_list)) : ?>
+            <?php /** @var Pet $active_pet */foreach ( $active_list as $active_pet ) : ?>
+                <li class="pet-badge-active">
+                    <a href="#"><img src="images/shoyru.jpg" /></a>
+                    <div class="pet-stats" />
+                        <h1><?php echo $active_pet->getName()?></h1>
+                        <p><b>Species: </b><?php echo $active_pet->getSpecies()->getSpecies()?></p>
+                        <p><b>Type: </b> <?php echo $active_pet->getSpecies()->getType()?></p>
+                        <p><?php
+                            $status = $active_pet->isActive();
+                            if($status) {
+                                echo "<b>Active</b>";
+                            }
+                        ?></p>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        <?php endif; ?>
+        <?php if(!empty($non_active_list)) : ?>
+            <?php /** @var Pet $non_active_pet */foreach ( $non_active_list as $non_active_pet ) : ?>
+                <li class="pet-badge">
+                    <a href="#"><img src="images/shoyru.jpg" /></a>
+                    <div class="pet-stats" />
+                        <h1><?php echo $non_active_pet->getName()?></h1>
+                        <p><b>Species: </b><?php echo $non_active_pet->getSpecies()->getSpecies()?></p>
+                        <p><b>Type: </b> <?php echo $non_active_pet->getSpecies()->getType()?></p>
+                        <p><?php
+                            $status = $non_active_pet->isActive();
+                            if($status) {
+                                echo "<b>Active</b>";
+                            }?></p>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        <?php endif; ?>
+        <?php if(empty($active_list)) : ?>
+        <p>There are no pets associated with this user.</p>
+        <?php endif; ?>
     </ul>
 </section>

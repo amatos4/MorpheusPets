@@ -80,6 +80,11 @@ nav > ul > li > a:hover {
     color: #ff5722;
 }
 
+nav ul form {
+    display: inline-block;
+    padding: 2px;
+}
+
 nav ul #search-bar {
     margin-left: 40px;
     display: inline-block;
@@ -156,7 +161,27 @@ nav ul #search-button {
     box-shadow: 1px 1px 1px 1px #ccc;
 }
 
+.pet-badge-active {
+    background-color: #FFF;
+    margin: 40px;
+    position: relative;
+    overflow: hidden;
+    width: auto;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ff6f00;
+    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+    -mox-box-shadow: 1px 1px 1px 1px #ccc;
+    box-shadow: 1px 1px 1px 1px #ccc;
+}
+
 .pet-badge img {
+    width: 250px;
+    float: left;
+    margin: 0px 15px 0px 0px;
+}
+
+.pet-badge-active img {
     width: 250px;
     float: left;
     margin: 0px 15px 0px 0px;

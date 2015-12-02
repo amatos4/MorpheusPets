@@ -6,9 +6,11 @@
   // Form inputs
   $name       = isset( $data[ 'name' ] ) ? $data[ 'name' ] : null;
   $species_id = isset( $data[ 'species_id' ] ) ? $data[ 'species_id' ] : null;
+  $pet_id     = isset( $data[ 'pet_id' ] ) ? $data[ 'pet_id' ] : null;
 
   // Other Data
   $species_list = isset( $data[ 'species_list' ] ) ? $data[ 'species_list' ] : null;
+  $edit_mode    = isset( $data[ 'edit_mode' ] ) ? $data[ 'edit_mode' ] : null;
 
   // Errors
   $general_error = isset( $data[ 'general_err' ] ) ? $data[ 'general_err' ] : null;
@@ -39,7 +41,15 @@
       <small>*Leading and trailing spaces do not count.</small>
       <p class="text-error"
          id="pet_editor_form_error"><?php if ( isset( $form_error ) ) echo $form_error; ?></p>
-
+      <?php
+        // Add hidden pet id if pet is being edited
+        if ( isset( $edit_mode ) )
+        {
+          ?>
+          <input type="hidden" id="pet_id" name="pet_id" value="<?php echo $pet_id; ?>"/>
+          <?php
+        }
+      ?>
       <div class="form-group">
         <label for="pet_name">Name</label>
         <input type="text" class="form-control" id="pet_name" name="name" placeholder="Name"
@@ -50,32 +60,23 @@
       </div>
       <div class="form-group">
         <label for="pet_species">Species</label>
-        <select class="form-control" id="pet_species" name="species" required>
+        <select class="form-control" id="pet_species"
+                name="species" <?php if ( isset( $edit_mode ) ) echo "disabled"; ?>>
           <option value="0">Select a species</option>
           <?php
-//            // Display species list if available
-//            if ( isset( $species_list ) )
-//            {
-//              /** @var Species $species */
-//              foreach ( $species_list as $species )
-//              {
-//                ?>
-<!--                <option-->
-<!--                  value="--><?php //echo $species->getId(); ?><!--" --><?php //if ( isset( $species_id ) && $species_id === $species->getId() ) echo "selected=selected" ?><!-->--><?php //echo $species->getSpecies(); ?><!--</option>-->
-<!--                --><?php
-//              }
-//            }
-//            else
-//            {
-//              echo "<option value=\"0\">No species found.</option>";
-//            }
+            // Display species list if available
+            if ( isset( $species_list ) )
+            {
+              /** @var Species $species */
+              foreach ( $species_list as $species )
+              {
+                ?>
+                <option
+                  value="<?php echo $species->getId(); ?>" <?php if ( isset( $species_id ) && $species_id === $species->getId() ) echo "selected=selected" ?>><?php echo $species->getSpecies(); ?></option>
+                <?php
+              }
+            }
           ?>
-          <option value="0">Shoyru</option>
-          <option value="0">Eyrie</option>
-          <option value="0">Kau</option>
-          <option value="0">Kacheek</option>
-          <option value="0">JubJub</option>
-          <option value="0">Krawk</option>
         </select>
 
         <p class="text-error"
@@ -87,37 +88,11 @@
     </form>
     </section>
 
-    <aside class="pet-editor-species" id="pet_species_details">
+    <aside class="pet-editor-species-details-container">
       <h2>Species Details</h2>
-      <!--    <p id=pet_species_details_placeholder>Select a species to see more details</p>-->
-      <h3>Shoyru</h3>
-      <img src="images/shoyru.jpg"/>
 
-      <p><b>Type:</b> Fire</p>
-
-      <article class="pet-stat-priority">
-        <h3>Stat Priorities</h3>
-        <ol>
-          <li>
-            <p><b>Essence</b></p>
-          </li>
-          <li>
-            <p><b>Brawn</b></p>
-          </li>
-          <li>
-            <p><b>Focus</b></p>
-          </li>
-          <li>
-            <p><b>Grit</b></p>
-          </li>
-          <li>
-            <p><b>Guts</b></p>
-          </li>
-          <li>
-            <p><b>Speed</b></p>
-          </li>
-        </ol>
-      </article>
+      <div id="pet_species_details">
+      </div>
     </aside>
     <?php
   }

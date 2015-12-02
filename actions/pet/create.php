@@ -10,8 +10,7 @@
   // Redirect to home page if not logged in
   if ( !$session->isUserLoggedIn() )
   {
-    // TODO Uncomment once user login form is complete
-//    HTTPUtils::my_http_redirect( 'index.php' );
+    HTTPUtils::my_http_redirect( 'index.php' );
   }
 
   // Get logged in user

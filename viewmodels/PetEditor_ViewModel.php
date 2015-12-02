@@ -118,6 +118,8 @@
       $sanitized_name = null;
       $species        = null;
 
+      // View config
+      $view_data[ 'species_list' ] = $this->species_list;
 
       // Pet is being created
       if ( $create )
@@ -129,6 +131,7 @@
       else
       {
         // Set the flag that this pet is being edited
+        // Species should not be modifiable
         $view_data[ 'edit_mode' ] = true;
 
         // Check if pet was found
@@ -211,7 +214,7 @@
             // Redirect to view pet if added successfully
             if ( $new_pet_id )
             {
-              HTTPUtils::my_http_redirect( 'pet_viewer.php?pet_id=' . $new_pet_id );
+              HTTPUtils::my_http_redirect( 'pet.php?id=' . $new_pet_id );
             }
             else
             {
@@ -221,13 +224,17 @@
           // Check if this is an existing pet to be edited
           else
           {
+            // Update pet fields
+            // Species cannot be modified
+            $this->pet_to_edit->setName( $sanitized_name );
+
             // Update pet in database
             $updated = $this->data->updatePet( $this->pet_to_edit );
 
             // Redirect to view pet if updated successfully
             if ( $updated )
             {
-              HTTPUtils::my_http_redirect( 'pet_viewer.php?pet_id=' . $this->pet_to_edit->getId() );
+              HTTPUtils::my_http_redirect( 'pet.php?id=' . $this->pet_to_edit->getId() );
             }
             else
             {

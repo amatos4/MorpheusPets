@@ -216,7 +216,7 @@ nav ul #search-button {
 }
 
 .pet-editor-form h2,
-.pet-editor-species h2,
+.pet-editor-species-details-container h2,
 .login-form h2,
 .register-form h2 {
   font-size: 1.5em;
@@ -236,7 +236,7 @@ nav ul #search-button {
   box-shadow: 1px 1px 1px 1px #ccc;
 }
 
-.pet-editor-species {
+.pet-editor-species-details-container {
   background-color: #FFF;
   margin: 10px;
   position: relative;
@@ -249,13 +249,13 @@ nav ul #search-button {
   box-shadow: 1px 1px 1px 1px #ccc;
 }
 
-.pet-editor-species h3 {
+.pet-editor-species-details-container h3 {
   font-size: 1.5em;
   padding-top: 15px;
   text-align: center;
 }
 
-.pet-editor-species img {
+.pet-editor-species-details-container img {
   margin-left: auto;
   margin-right: auto;
   width: 250px;

@@ -12,6 +12,7 @@
       'r' => 'Grit'
     ];
 
+    /** @var int unique id */
     private $id;
 
     /** @var string species name */
@@ -25,6 +26,9 @@
 
     /** @var string stat priorities using full stat names */
     private $stats_readable;
+
+    /** @var  string URL to image */
+    private $image_url;
 
     /**
      * Species constructor.
@@ -108,15 +112,9 @@
     /**
      * @return array stat names in order of priority
      */
-    public function getReadableStatPriorities()
+    public function getReadableStatPriority()
     {
-      $array = null;
-
-      if ( isset( $this->stats_readable ) )
-      {
-        $array = $this->stats_readable;
-      }
-      else
+      if ( !isset( $this->stats_readable ) )
       {
         $array = [ ];
 
@@ -126,11 +124,25 @@
         {
           array_push( $array, self::$stat_abbr_to_stat_name[ $this->stats[ $i ] ] );
         }
+
+        $this->stats_readable = $array;
       }
 
-      return $array;
+      return $this->stats_readable;
     }
 
+    /**
+     * @return string
+     */
+    public function getImageUrl()
+    {
+      if ( !isset( $this->image_url ) )
+      {
+        $this->image_url = 'images/' . $this->species . '.png';
+      }
+
+      return $this->image_url;
+    }
 
     /**
      * Specify data which should be serialized to JSON
@@ -142,10 +154,11 @@
     public function jsonSerialize()
     {
       $array = [
-        'id'      => $this->getId(),
-        'species' => $this->getSpecies(),
-        'type'    => $this->getType(),
-        'stats'   => $this->getReadableStatPriorities()
+        'id'            => $this->id,
+        'species'       => $this->species,
+        'type'          => $this->type,
+        'stat_priority' => $this->getReadableStatPriority(),
+        'image_url'     => $this->getImageUrl()
       ];
 
       return $array;

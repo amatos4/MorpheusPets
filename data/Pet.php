@@ -2,28 +2,40 @@
 
   class Pet implements JsonSerializable
   {
+    /** @var int unique id */
     private $id;
 
+    /** @var User owner */
     private $owner;
 
+    /** @var Species species */
     private $species;
 
+    /** @var string name */
     private $name;
 
+    /** @var int experience level */
     private $experience;
 
+    /** @var int brawn stat */
     private $brawn;
 
+    /** @var int guts stat */
     private $guts;
 
+    /** @var int essence stat */
     private $essence;
 
+    /** @var int speed stat */
     private $speed;
 
+    /** @var int focus stat */
     private $focus;
 
+    /** @var int grit stat */
     private $grit;
 
+    /** @var bool whether pet is active */
     private $active;
 
     /**
@@ -41,6 +53,7 @@
       $this->name       = $name;
       $this->experience = 0;
       $this->brawn      = 0;
+      $this->guts       = 0;
       $this->essence    = 0;
       $this->speed      = 0;
       $this->focus      = 0;
@@ -110,6 +123,7 @@
     public function setName( $name )
     {
       $this->name = $name;
+      unset( $this->image_url );
     }
 
     /**
@@ -240,7 +254,6 @@
       $this->active = $active;
     }
 
-
     /**
      * Specify data which should be serialized to JSON
      * @link  http://php.net/manual/en/jsonserializable.jsonserialize.php
@@ -251,18 +264,18 @@
     public function jsonSerialize()
     {
       $array = [
-        'id'         => $this->getId(),
-        'owner_id'   => $this->getOwner()->getId(),
-        'species_id' => $this->getSpecies()->getId(),
-        'name'       => $this->getName(),
-        'experience' => $this->getExperience(),
-        'brawn'      => $this->getBrawn(),
-        'guts'       => $this->getGuts(),
-        'essence'    => $this->getEssence(),
-        'speed'      => $this->getSpeed(),
-        'focus'      => $this->getFocus(),
-        'grit'       => $this->getGrit(),
-        'active'     => $this->isActive()
+        'id'         => $this->id,
+        'owner_id'   => $this->owner->getId(),
+        'species_id' => $this->species->getId(),
+        'name'       => $this->name,
+        'experience' => $this->experience,
+        'brawn'      => $this->brawn,
+        'guts'       => $this->guts,
+        'essence'    => $this->essence,
+        'speed'      => $this->speed,
+        'focus'      => $this->focus,
+        'grit'       => $this->grit,
+        'active'     => $this->active
       ];
 
       return $array;

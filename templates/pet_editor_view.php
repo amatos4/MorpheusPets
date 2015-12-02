@@ -3,6 +3,9 @@
   $header_title       = isset( $data[ 'header_title' ] ) ? $data[ 'header_title' ] : null;
   $header_description = isset( $data[ 'header_description' ] ) ? $data[ 'header_description' ] : null;
 
+  // Form stuff
+  $submit_button_text = isset( $data[ 'submit_button_text' ] ) ? $data[ 'submit_button_text' ] : null;
+
   // Form inputs
   $name       = isset( $data[ 'name' ] ) ? $data[ 'name' ] : null;
   $species_id = isset( $data[ 'species_id' ] ) ? $data[ 'species_id' ] : null;
@@ -84,7 +87,7 @@
       </div>
 
 
-      <button type="submit" class="btn btn-primary" name="submit">Create Pet</button>
+      <button type="submit" class="btn btn-primary" name="submit"><?php echo $submit_button_text ?></button>
     </form>
     </section>
 

@@ -21,7 +21,7 @@ class Error_ViewModel extends ViewModel
     public function renderFailSearch()
     {
         $view_data[ 'page_title' ]         = 'User Not Found';
-        $view_data[ 'js' ]                 = '<script src="js/user_profile.js"></script>';
+        $view_data[ 'js' ]                 = '<script src="js/error_page.js"></script>';
 
         $view_data[ 'not_found_username' ] = $_POST['search'];
 
@@ -33,7 +33,7 @@ class Error_ViewModel extends ViewModel
     public function renderUserNotExist()
     {
         $view_data[ 'page_title' ]         = 'User Not Found';
-        $view_data[ 'js' ]                 = '<script src="js/user_profile.js"></script>';
+        $view_data[ 'js' ]                 = '<script src="js/error_page.js"></script>';
 
         $view_data[ 'userIdNotFound' ] = $_GET['profileId'];
 

@@ -4,7 +4,7 @@
   $preview_key = 'preview';
 
   // Route to edit pet page if pet id is given
-  if ( isset( $_GET[ $id_key ] ) )
+  if ( isset( $_POST[ $id_key ] ) )
   {
     require_once 'actions/pet/edit.php';
   }

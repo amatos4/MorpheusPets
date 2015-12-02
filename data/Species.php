@@ -1,14 +1,30 @@
 <?php
 
-  class Species
+  class Species implements JsonSerializable
   {
+    // Mapping between stat abbreviations and stat names
+    private static $stat_abbr_to_stat_name = [
+      'b' => 'Brawn',
+      'g' => 'Guts',
+      'e' => 'Essence',
+      's' => 'Speed',
+      'f' => 'Focus',
+      'r' => 'Grit'
+    ];
+
     private $id;
 
+    /** @var string species name */
     private $species;
 
+    /** @var string type */
     private $type;
 
+    /** @var string stat priorities using abbreviations */
     private $stats;
+
+    /** @var string stat priorities using full stat names */
+    private $stats_readable;
 
     /**
      * Species constructor.
@@ -89,5 +105,49 @@
       $this->stats = $stats;
     }
 
+    /**
+     * @return array stat names in order of priority
+     */
+    public function getReadableStatPriorities()
+    {
+      $array = null;
 
+      if ( isset( $this->stats_readable ) )
+      {
+        $array = $this->stats_readable;
+      }
+      else
+      {
+        $array = [ ];
+
+        $length = strlen( $this->stats );
+
+        for ( $i = 0; $i < $length; $i++ )
+        {
+          array_push( $array, self::$stat_abbr_to_stat_name[ $this->stats[ $i ] ] );
+        }
+      }
+
+      return $array;
+    }
+
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link  http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+      $array = [
+        'id'      => $this->getId(),
+        'species' => $this->getSpecies(),
+        'type'    => $this->getType(),
+        'stats'   => $this->getReadableStatPriorities()
+      ];
+
+      return $array;
+    }
   }

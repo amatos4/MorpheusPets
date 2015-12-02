@@ -26,6 +26,8 @@
 
     private $active;
 
+    private $image_url;
+
     /**
      * Pet constructor.
      *
@@ -110,6 +112,7 @@
     public function setName( $name )
     {
       $this->name = $name;
+      unset( $this->image_url );
     }
 
     /**
@@ -240,6 +243,18 @@
       $this->active = $active;
     }
 
+    /**
+     * @return string
+     */
+    public function getImageUrl()
+    {
+      if ( !isset( $this->image_url ) )
+      {
+        $this->image_url = 'images/' . $this->name . '.png';
+      }
+
+      return $this->image_url;
+    }
 
     /**
      * Specify data which should be serialized to JSON
@@ -251,18 +266,19 @@
     public function jsonSerialize()
     {
       $array = [
-        'id'         => $this->getId(),
-        'owner_id'   => $this->getOwner()->getId(),
-        'species_id' => $this->getSpecies()->getId(),
-        'name'       => $this->getName(),
-        'experience' => $this->getExperience(),
-        'brawn'      => $this->getBrawn(),
-        'guts'       => $this->getGuts(),
-        'essence'    => $this->getEssence(),
-        'speed'      => $this->getSpeed(),
-        'focus'      => $this->getFocus(),
-        'grit'       => $this->getGrit(),
-        'active'     => $this->isActive()
+        'id'         => $this->id,
+        'owner_id'   => $this->owner->getId(),
+        'species_id' => $this->species->getId(),
+        'name'       => $this->name,
+        'experience' => $this->experience,
+        'brawn'      => $this->brawn,
+        'guts'       => $this->guts,
+        'essence'    => $this->essence,
+        'speed'      => $this->speed,
+        'focus'      => $this->focus,
+        'grit'       => $this->grit,
+        'active'     => $this->active,
+        'image_url'  => $this->image_url
       ];
 
       return $array;

@@ -110,13 +110,7 @@
      */
     public function getReadableStatPriorities()
     {
-      $array = null;
-
-      if ( isset( $this->stats_readable ) )
-      {
-        $array = $this->stats_readable;
-      }
-      else
+      if ( !isset( $this->stats_readable ) )
       {
         $array = [ ];
 
@@ -126,9 +120,11 @@
         {
           array_push( $array, self::$stat_abbr_to_stat_name[ $this->stats[ $i ] ] );
         }
+
+        $this->stats_readable = $array;
       }
 
-      return $array;
+      return $this->stats_readable;
     }
 
 
@@ -142,9 +138,9 @@
     public function jsonSerialize()
     {
       $array = [
-        'id'      => $this->getId(),
-        'species' => $this->getSpecies(),
-        'type'    => $this->getType(),
+        'id'      => $this->id,
+        'species' => $this->species,
+        'type'    => $this->type,
         'stats'   => $this->getReadableStatPriorities()
       ];
 

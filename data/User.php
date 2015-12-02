@@ -141,10 +141,10 @@
     public function jsonSerialize()
     {
       $array = [
-        'id'            => $this->getId(),
-        'username'      => $this->getUsername(),
-        'email_address' => $this->getEmailAddress(),
-        'description'   => $this->getDescription()
+        'id'            => $this->id,
+        'username'      => $this->username,
+        'email_address' => $this->email_address,
+        'description'   => $this->description
       ];
 
       return $array;

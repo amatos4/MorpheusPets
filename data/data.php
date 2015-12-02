@@ -100,7 +100,7 @@
 
       $this->getPetStatement->bind_param( "i", $id );
       $this->getPetStatement->execute();
-      $this->getPetStatement->bind_result( $res_id, $owner_id, $species_id, $name, $experience, $brawn, $guts, $essence, $speed, $focus, $grit, $active, $username, $description, $species, $type, $stats );
+      $this->getPetStatement->bind_result( $res_id, $owner_id, $species_id, $name, $experience, $brawn, $guts, $essence, $speed, $focus, $grit, $active, $username, $email_address, $description, $species, $type, $stats );
 
       // Expecting only 1 result
       if ( $this->getPetStatement->fetch() )
@@ -230,7 +230,7 @@
 
       $this->getActivePetsForUserStatement->bind_param( "i", $id );
       $this->getActivePetsForUserStatement->execute();
-      $this->getActivePetsForUserStatement->bind_result( $res_id, $owner_id, $species_id, $name, $experience, $brawn, $guts, $essence, $speed, $focus, $grit, $active, $username, $description, $species, $type, $stats );
+      $this->getActivePetsForUserStatement->bind_result( $res_id, $owner_id, $species_id, $name, $experience, $brawn, $guts, $essence, $speed, $focus, $grit, $active, $username, $email_address, $description, $species, $type, $stats );
 
       while ( $this->getActivePetsForUserStatement->fetch() )
       {

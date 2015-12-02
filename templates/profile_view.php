@@ -6,7 +6,8 @@ $page_title       = isset( $data[ 'page_title' ] ) ? $data[ 'page_title' ] : nul
 $active_list = isset( $data[ 'active_pets' ] ) ? $data[ 'active_pets' ] : null;
 $non_active_list = isset( $data[ 'nonactive_pets'] ) ? $data[ 'nonactive_pets' ] : null;
 $can_edit_bool = isset( $data[ 'can_edit_profile' ] ) ? $data[ 'can_edit_profile' ] : null;
-$profile_user = isset( $data[ 'profile_user' ] ) ? $data[ ' profile_user ' ] : null;
+/** @var User $profile_user */
+$profile_user = isset( $data[ 'profile_user' ] ) ? $data[ 'profile_user' ] : null;
 
 ?>
 
@@ -17,8 +18,8 @@ $profile_user = isset( $data[ 'profile_user' ] ) ? $data[ ' profile_user ' ] : n
 <section class="profile-badge">
     <img src="images/avatar_blank.png"/>
     <article class="description">
-        <h1>@John_Smith</h1>
-        <p>I am considered one of the very best players in the entire game. I am out to create the best team of MorpheusPets! Battle against me and see if you have what it takes.</p>
+        <h1><?php echo $profile_user->getUsername() ?></h1>
+        <p><?php echo $profile_user->getDescription() ?></p>
     </article>
 </section>
 

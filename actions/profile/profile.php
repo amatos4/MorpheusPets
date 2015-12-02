@@ -14,7 +14,7 @@
     $profileUser = $data->getUser($_GET['profileId']);
 
     //Get user profile's pet collection
-    $pet_collection = $data->getAllPetsForUser($profileUser);
+    $pet_collection = $data->getAllPetsForUser($profileUser->getId());
 
     // Setup view model
     $viewModel = new Profile_ViewModel( $loggedInUser , $profileUser);

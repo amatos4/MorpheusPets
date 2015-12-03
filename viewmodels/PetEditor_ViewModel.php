@@ -109,6 +109,7 @@
       $submit_key     = 'submit';
       $name_key       = 'name';
       $species_id_key = 'species_id';
+      $pet_id_key     = 'pet_id';
 
       $errors_found = false;
 
@@ -148,6 +149,7 @@
         }
         else
         {
+          $view_data[ $pet_id_key ]     = $this->pet_to_edit->getId();
           $view_data[ $name_key ]       = $this->pet_to_edit->getName();
           $view_data[ $species_id_key ] = $this->pet_to_edit->getSpecies()->getId();
         }
@@ -209,6 +211,9 @@
           if ( $create )
           {
             $new_pet = new Pet( $this->logged_in_user, $species, $sanitized_name );
+
+            // Generate initial stats
+            $new_pet->rollStats();
 
             // Add pet to database
             $new_pet_id = $this->data->addPet( $new_pet );

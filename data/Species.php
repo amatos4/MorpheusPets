@@ -138,7 +138,7 @@
     {
       if ( !isset( $this->image_url ) )
       {
-        $this->image_url = 'images/' . $this->species . '.png';
+        $this->image_url = 'images/species/' . $this->species . '.png';
       }
 
       return $this->image_url;

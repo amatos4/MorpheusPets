@@ -38,6 +38,9 @@
     /** @var bool whether pet is active */
     private $active;
 
+    /** @var bool whether stats were rolled */
+    private $rolled_stats;
+
     /**
      * Pet constructor.
      *
@@ -53,7 +56,7 @@
       $this->name       = $name;
       $this->experience = 0;
       $this->brawn      = 0;
-	  $this->guts		= 0;
+      $this->guts       = 0;
       $this->essence    = 0;
       $this->speed      = 0;
       $this->focus      = 0;
@@ -156,6 +159,7 @@
     public function setBrawn( $brawn )
     {
       $this->brawn = $brawn;
+      $this->rolled_stats = true;
     }
 
     /**
@@ -172,6 +176,7 @@
     public function setGuts( $guts )
     {
       $this->guts = $guts;
+      $this->rolled_stats = true;
     }
 
     /**
@@ -188,6 +193,7 @@
     public function setEssence( $essence )
     {
       $this->essence = $essence;
+      $this->rolled_stats = true;
     }
 
     /**
@@ -204,6 +210,7 @@
     public function setSpeed( $speed )
     {
       $this->speed = $speed;
+      $this->rolled_stats = true;
     }
 
     /**
@@ -220,6 +227,7 @@
     public function setFocus( $focus )
     {
       $this->focus = $focus;
+      $this->rolled_stats = true;
     }
 
     /**
@@ -236,6 +244,7 @@
     public function setGrit( $grit )
     {
       $this->grit = $grit;
+      $this->rolled_stats = true;
     }
 
     /**
@@ -252,6 +261,67 @@
     public function setActive( $active )
     {
       $this->active = $active;
+    }
+
+    /**
+     * Creates the initial stats for a new pet using the
+     * stats priority from the species
+     */
+    public function rollStats()
+    {
+      // Do not roll stats if they were manually set
+      if ( !$this->rolled_stats && isset( $this->species ) )
+      {
+        $priority = $this->species->getStats();
+
+        srand( time() );
+
+        $starter_stats = [ 0, 0, 0, 0, 0, 0 ];
+        $points        = 126; // ((6+5+...+1) * 6)
+
+        for ( $cur_stat = 0; $cur_stat < 6; $cur_stat++ ) // for each stat
+        {
+          $spent = 0;
+          for ( $dice_rolled = 0; $dice_rolled < ( 7 - $cur_stat ); $dice_rolled++ ) // Rolls 6 dice for the primary stat
+            $spent += rand( 1, 6 );
+          $starter_stats[ $cur_stat ] = $spent;
+          $points -= $spent;
+        }
+        // We are now done with the initial rolls. Now to distribute the left over points
+        while ( $points > 0 )
+          for ( $cur_stat = 0; $cur_stat < 6; $cur_stat++ )
+            if ( $points > 0 )
+            {
+              $starter_stats[ $cur_stat ]++;
+              $points--;
+            }
+
+        // Apply using priority
+        for ( $cur_stat = 0; $cur_stat < 6; $cur_stat++ )
+        {
+          switch ( $priority[ $cur_stat ] )
+          {
+            case 'b':
+              $this->brawn = $starter_stats[ $cur_stat ];
+              break;
+            case 'g':
+              $this->guts = $starter_stats[ $cur_stat ];
+              break;
+            case 'e':
+              $this->essence = $starter_stats[ $cur_stat ];
+              break;
+            case 's':
+              $this->speed = $starter_stats[ $cur_stat ];
+              break;
+            case 'f':
+              $this->focus = $starter_stats[ $cur_stat ];
+              break;
+            case 'r':
+              $this->grit = $starter_stats[ $cur_stat ];
+              break;
+          }
+        }
+      }
     }
 
     /**

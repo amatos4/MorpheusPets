@@ -20,7 +20,10 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
     <img src="images/avatar_blank.png"/>
     <article class="description">
         <h1><?php echo $profile_user->getUsername() ?></h1>
-        <p><?php echo $profile_user->getDescription() ?></p>
+        <?php if ($can_edit_bool) : ?>
+        <div class="small-btn"><a href="">Edit description</a></div>
+        <?php endif; ?>
+        <p id="user-description"><?php echo $profile_user->getDescription() ?></p>
     </article>
 </section>
 

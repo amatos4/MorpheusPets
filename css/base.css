@@ -176,13 +176,13 @@ nav ul #search-button {
 }
 
 .pet-badge img {
-    width: 250px;
+    width: 150px;
     float: left;
     margin: 0px 15px 0px 0px;
 }
 
 .pet-badge-active img {
-    width: 250px;
+    width: 150px;
     float: left;
     margin: 0px 15px 0px 0px;
 }
@@ -329,7 +329,11 @@ label {
     font-size: 20px;
     padding: 10px 20px 10px 20px;
     text-decoration: none;
-    width: 150px;
+    width: auto;
+}
+
+.btn a{
+    color: #ffffff;
 }
 
 .btn:hover {
@@ -340,6 +344,21 @@ label {
   background-image: -o-linear-gradient(top, #ff6f00, #d93434);
   background-image: linear-gradient(to bottom, #ff6f00, #d93434);
   text-decoration: none;
+}
+
+.small-btn {
+    background: #0066ff;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 0.85em;
+    border-radius: 5px;
+    width: auto;
+    padding: 5px;
+    display: inline-block;
+}
+
+.small-btn a{
+    color: #ffffff;
 }
 
 /* Text */

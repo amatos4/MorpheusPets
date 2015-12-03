@@ -1,14 +1,34 @@
 <?php
 
-  class Species
+  class Species implements JsonSerializable
   {
+    // Mapping between stat abbreviations and stat names
+    private static $stat_abbr_to_stat_name = [
+      'b' => 'Brawn',
+      'g' => 'Guts',
+      'e' => 'Essence',
+      's' => 'Speed',
+      'f' => 'Focus',
+      'r' => 'Grit'
+    ];
+
+    /** @var int unique id */
     private $id;
 
+    /** @var string species name */
     private $species;
 
+    /** @var string type */
     private $type;
 
+    /** @var string stat priorities using abbreviations */
     private $stats;
+
+    /** @var string stat priorities using full stat names */
+    private $stats_readable;
+
+    /** @var  string URL to image */
+    private $image_url;
 
     /**
      * Species constructor.
@@ -26,7 +46,7 @@
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -34,7 +54,7 @@
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      */
     public function setId( $id )
     {
@@ -42,7 +62,7 @@
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getSpecies()
     {
@@ -50,7 +70,7 @@
     }
 
     /**
-     * @param mixed $species
+     * @param string $species
      */
     public function setSpecies( $species )
     {
@@ -58,7 +78,7 @@
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getType()
     {
@@ -66,7 +86,7 @@
     }
 
     /**
-     * @param mixed $type
+     * @param string $type
      */
     public function setType( $type )
     {
@@ -74,7 +94,7 @@
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getStats()
     {
@@ -82,10 +102,65 @@
     }
 
     /**
-     * @param mixed $stats
+     * @param string $stats
      */
     public function setStats( $stats )
     {
       $this->stats = $stats;
+    }
+
+    /**
+     * @return array stat names in order of priority
+     */
+    public function getReadableStatPriority()
+    {
+      if ( !isset( $this->stats_readable ) )
+      {
+        $array = [ ];
+
+        $length = strlen( $this->stats );
+
+        for ( $i = 0; $i < $length; $i++ )
+        {
+          array_push( $array, self::$stat_abbr_to_stat_name[ $this->stats[ $i ] ] );
+        }
+
+        $this->stats_readable = $array;
+      }
+
+      return $this->stats_readable;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImageUrl()
+    {
+      if ( !isset( $this->image_url ) )
+      {
+        $this->image_url = 'images/' . $this->species . '.png';
+      }
+
+      return $this->image_url;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link  http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+      $array = [
+        'id'            => $this->id,
+        'species'       => $this->species,
+        'type'          => $this->type,
+        'stat_priority' => $this->getReadableStatPriority(),
+        'image_url'     => $this->getImageUrl()
+      ];
+
+      return $array;
     }
   }

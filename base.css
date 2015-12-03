@@ -91,7 +91,7 @@ nav ul #search-button {
     padding: 2px;
 }
 
-.logout {
+.logout, .login, .register {
     float: right;   
 }
 

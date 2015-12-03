@@ -80,6 +80,11 @@ nav > ul > li > a:hover {
     color: #ff5722;
 }
 
+nav ul form {
+    display: inline-block;
+    padding: 2px;
+}
+
 nav ul #search-bar {
     margin-left: 40px;
     display: inline-block;
@@ -91,8 +96,8 @@ nav ul #search-button {
     padding: 2px;
 }
 
-.logout {
-    float: right;   
+.logout, .login, .register {
+    float: right;
 }
 
 #container {
@@ -119,7 +124,7 @@ nav ul #search-button {
 }
 
 .profile-badge h1 {
-    font-size: 2em;   
+    font-size: 2em;
     margin-bottom: 10px;
     color: #ff5722;
     font-weight: 800;
@@ -139,10 +144,10 @@ nav ul #search-button {
 }
 
 .pet-container > h1 {
-    font-size: 2em;   
+    font-size: 2em;
     margin-bottom: 10px;
     color: #ff5722;
-    font-weight: 600; 
+    font-weight: 600;
 }
 
 .pet-badge {
@@ -156,14 +161,34 @@ nav ul #search-button {
     box-shadow: 1px 1px 1px 1px #ccc;
 }
 
+.pet-badge-active {
+    background-color: #FFF;
+    margin: 40px;
+    position: relative;
+    overflow: hidden;
+    width: auto;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ff6f00;
+    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+    -mox-box-shadow: 1px 1px 1px 1px #ccc;
+    box-shadow: 1px 1px 1px 1px #ccc;
+}
+
 .pet-badge img {
-    width: 250px;
+    width: 150px;
+    float: left;
+    margin: 0px 15px 0px 0px;
+}
+
+.pet-badge-active img {
+    width: 150px;
     float: left;
     margin: 0px 15px 0px 0px;
 }
 
 .pet-stats {
-    float: left;   
+    float: left;
 }
 
 .pet-stats h1 {
@@ -173,7 +198,120 @@ nav ul #search-button {
 }
 
 .pet-stats p {
-    margin: 10px; 
+    margin: 10px;
+}
+
+.pet-editor-header,
+.login-header,
+.register-header {
+  margin-bottom: 10px;
+}
+
+.pet-editor-header h1,
+.login-header h1,
+.register-header h1 {
+  font-size: 2em;
+  color: #ff5722;
+  font-weight: 800;
+}
+
+.pet-editor-form h2,
+.pet-editor-species-details-container h2,
+.login-form h2,
+.register-form h2 {
+  font-size: 1.5em;
+
+  color: #ff5722;
+  font-weight: 800;
+}
+
+.pet-editor-form {
+  background-color: #FFF;
+  margin: 10px;
+  width: 50%;
+  padding: 15px;
+  float: left;
+  -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+  -moz-box-shadow: 1px 1px 1px 1px #ccc;
+  box-shadow: 1px 1px 1px 1px #ccc;
+}
+
+.pet-editor-species-details-container {
+  background-color: #FFF;
+  margin: 10px;
+  position: relative;
+  overflow: hidden;
+  width: 40%;
+  padding: 15px;
+  float: right;
+  -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+  -moz-box-shadow: 1px 1px 1px 1px #ccc;
+  box-shadow: 1px 1px 1px 1px #ccc;
+}
+
+.pet-editor-species-details-container h3 {
+  font-size: 1.5em;
+  padding-top: 15px;
+  text-align: center;
+}
+
+.pet-editor-species-details-container img {
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+}
+
+.pet-stat-priority ol {
+  list-style: decimal inside;
+}
+
+.login-form,
+.register-form {
+  background-color: #FFF;
+  margin: 10px auto;
+  width: 50%;
+  padding: 15px;
+  -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+  -moz-box-shadow: 1px 1px 1px 1px #ccc;
+  box-shadow: 1px 1px 1px 1px #ccc;
+}
+
+/* Forms */
+form {
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #555;
+  background-color: #fff;
+  border: 1px solid #ff5722;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+textarea.form-control {
+  height: auto;
+}
+
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: 700;
 }
 
 .btn {
@@ -191,7 +329,11 @@ nav ul #search-button {
     font-size: 20px;
     padding: 10px 20px 10px 20px;
     text-decoration: none;
-    width: 150px;
+    width: auto;
+}
+
+.btn a{
+    color: #ffffff;
 }
 
 .btn:hover {
@@ -204,6 +346,30 @@ nav ul #search-button {
   text-decoration: none;
 }
 
+.small-btn {
+    background: #0066ff;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 0.85em;
+    border-radius: 5px;
+    width: auto;
+    padding: 5px;
+    display: inline-block;
+}
+
+.small-btn a{
+    color: #ffffff;
+}
+
+/* Text */
+.small {
+  font-size: 85%;
+}
+
+.text-error {
+  color: #d91812;
+}
+
 /* retina device detection */
 @media only screen and (min--moz-device-pixel-ratio: 2),
 only screen and (-o-min-device-pixel-ratio: 2/1),
@@ -214,11 +380,11 @@ only screen and (min-device-pixel-ratio: 2) {
 
 /* media queries */
 @media screen and (max-width: 1024px) {
-    
+
 }
 
 @media screen and (max-width: 768px) {
-    
+
 }
 
 @media screen and (max-width: 640px) {

@@ -15,6 +15,8 @@
 	$user_team = $battle->getUser();
 	$enemy_team = $battle->getEnemy();
 	
+	#print_r($user_team);
+	
 	$activeUser = $battle->getActivePet();
 	$activeEnemy = $battle->getEnemyPet();
 	
@@ -52,27 +54,68 @@
 <body>
 	<?php
 		$alert = "Make your move!";
-		if(isset($_GET['attack'])) {
-			$alert = $battle->attack();
+		$user_health = $battle->getUserHealth();
+		if(isset($_SESSION['conclusion'])) {
+			$conclusion = $_SESSION['conclusion'];
+			$alert = $conclusion[1];
 		}
-		else if(isset($_GET['magic'])) {
-		
-		}
-		else if(isset($_GET['defend'])) {
-		
-		}
-		else if(isset($_GET['switch'])) {
-			if($_GET['switch'] != $activeUser) {
-				$alert = $battle->switchPet(0, $_GET['switch']);
-				$activeUser = $battle->getActivePet();
-				$user_Pet =  $user_team[$activeUser];
+		else if(isset($_GET['attack'])) {
+			if($user_health[0] <= 0) {
+				$alert = "Your pet has been knocked out! You must switch your pet!";
 			}
 			else {
-				$alert = "You can't switch to a pet that's already in battle!";
+				$alert = $battle->attack();
+				$activeEnemy = $battle->getEnemyPet();
+				$enemy_Pet = $enemy_team[$activeEnemy];
+			}
+		}
+		else if(isset($_GET['magic'])) {
+			if($user_health[0] <= 0) {
+				$alert = "Your pet has been knocked out! You must switch your pet!";
+			}
+			else {
+				$alert = $battle->magic();
+				$activeEnemy = $battle->getEnemyPet();
+				$enemy_Pet = $enemy_team[$activeEnemy];
+			}
+		}
+		else if(isset($_GET['defend'])) {
+			if($user_health[0] <= 0) {
+				$alert = "Your pet has been knocked out! You must switch your pet!";
+			}
+			else {
+				$alert = $battle->defend();
+				$activeEnemy = $battle->getEnemyPet();
+				$enemy_Pet = $enemy_team[$activeEnemy];
+			}
+		}
+		else if(isset($_GET['switch'])) {
+			if($battle->getPetHealth($_GET['switch'])[0] > 0) {
+				if($_GET['switch'] != $activeUser) {
+					$alert = $battle->switchPet(0, $_GET['switch']);
+					$activeUser = $battle->getActivePet();
+					$user_Pet =  $user_team[$activeUser];
+					$activeEnemy = $battle->getEnemyPet();
+					$enemy_Pet = $enemy_team[$activeEnemy];
+				}
+				else {
+					$alert = "You can't switch to a pet that's already in battle!";
+				}
+			}
+			else {
+				$alert = "You cannot switch into a knocked out pet!";
 			}
 		}
 		$user_health = $battle->getUserHealth();
 		$enemy_health = $battle->getEnemyHealth();
+		
+		if(!isset($_SESSION['conclusion'])) {
+			$conclusion = $battle->checkConclusion();
+			if($conclusion[0] == true) {
+				$alert .= $conclusion[1];
+				$_SESSION['conclusion'] = $conclusion;
+			}
+		}
 	?>
 
     <nav>
@@ -90,9 +133,9 @@
 		<section class="enemy-info">
 			<h1>Enemy Team</h1>
 			<ul class="enemy_team">
-				<li class="enemy_petimg"><img src="images/dariushead.png" width="50" height="50" />Darius</li>
-				<li class="enemy_petimg"><img src="images/arcanine.png" width="50" height="50" />Arcanine</li>
-				<li class="enemy_petimg"><img src="images/poliwhirl.png" width="50" height="50" />Poliwhirl</li>
+				<li class="enemy_petimg"><img src= <?php echo "images/species/". $enemy_team[0]->getSpecies()->getSpecies() . ".png"; ?> width="50" height="50" />Darius</li>
+				<li class="enemy_petimg"><img src=<?php echo "images/species/". $enemy_team[1]->getSpecies()->getSpecies() . ".png"; ?> width="50" height="50" />Arcanine</li>
+				<li class="enemy_petimg"><img src=<?php echo "images/species/". $enemy_team[2]->getSpecies()->getSpecies() . ".png"; ?> width="50" height="50" />Poliwhirl</li>
 			</ul>
 			<ul class="enemy_stat">
 				<li><h2>Enemy Battler: <?php echo $enemy->getUsername();?></h2></li>
@@ -118,7 +161,7 @@
 			</ul>
 		</section>
 		
-		<section class="player_actions">
+		<section class="player_actions" <?php if($conclusion[0] == true) {  echo "style = 'visibility: hidden;'"; } ?>>
 			<table>
 				<tr>
 					<td><div class="btn"><a href="battle.php?attack=true" >Attack</a></div></td>
@@ -127,9 +170,9 @@
 				</tr>
 				<tr>
 					<td><h2>Switch Pet:</h2></td>
-					<td><a href="battle.php?switch=0"><img src="images/pikachu.png"/></td>
-					<td><a href="battle.php?switch=1"><img src="images/bulba.png" height="50" width="50" /></td>
-					<td><a href="battle.php?switch=2"><img src="images/char.png" /></td>
+					<td><a href="battle.php?switch=0"><img src=<?php echo "images/species/". $user_team[0]->getSpecies()->getSpecies() . ".png"; ?> height="50" width="50" /></td>
+					<td><a href="battle.php?switch=1"><img src=<?php echo "images/species/". $user_team[1]->getSpecies()->getSpecies() . ".png"; ?> /></td>
+					<td><a href="battle.php?switch=2"><img src=<?php echo "images/species/". $user_team[2]->getSpecies()->getSpecies() . ".png"; ?> height="50" width="50"  /></td>
 				</tr>
 			</table>
 		</section>

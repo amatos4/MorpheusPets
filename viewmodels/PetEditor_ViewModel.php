@@ -212,6 +212,9 @@
           {
             $new_pet = new Pet( $this->logged_in_user, $species, $sanitized_name );
 
+            // Generate initial stats
+            $new_pet->rollStats();
+
             // Add pet to database
             $new_pet_id = $this->data->addPet( $new_pet );
 

@@ -215,6 +215,10 @@ nav ul #search-button {
     width: 175px;
 }
 
+.btn a {
+	color: #ffffff;
+}
+
 .btn:hover {
   background: #ff6f00;
   background-image: -webkit-linear-gradient(top, #ff6f00, #d93434);

@@ -53,7 +53,7 @@
       $this->name       = $name;
       $this->experience = 0;
       $this->brawn      = 0;
-      $this->guts       = 0;
+	  $this->guts		= 0;
       $this->essence    = 0;
       $this->speed      = 0;
       $this->focus      = 0;

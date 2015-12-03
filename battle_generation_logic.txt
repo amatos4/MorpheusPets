@@ -1,0 +1,73 @@
+sum_p = sum of player's party's levels
+sum_o = sum of opponent's party's levels
+
+exp_mod = sqrt(sum_o / sum_p) [rounded to one decimal place, capped at 5]
+
+Experience gain for win: 20 * exp_mod
+Experience gain for loss: 10 * exp_mod 
+
+Exp gain should always be an integer (no decimal).
+The maximum possible amount of EXP earned in battle is 100
+
+Leveling:
+	A pet will level up for every 100 exp it receives.
+	The maximum level for a pet is 100.	
+	
+Battle:
+	
+	Phys. Attack:
+		On success, deals
+			rand(level + 1, (level + (brawn div 4) + (speed div 8))) 
+		damage
+		
+		On draw, deals
+			(successful_damage div 2)
+		damage
+		
+	Mag. Attack:
+		On success, deals
+			rand(level + 1, (level + (focus div 4) + (speed div 8)))
+		damage
+			
+		On draw, deals
+			(successful_damage div 2)
+		damage
+		
+	Block:
+		On success, deals
+			rand(level + 1, (level + (guts div 4) + (speed div 8))) div 2
+		damage
+		
+		On draw, deals no damage
+		
+	Damage Reduction applies any time a pet would take damage:
+		rand((level div 10), ((level div 10) + (brawn div 10) + (speed div 20))
+	
+	Max HP:
+		20 + level + (essence div 3) + ((brawn + guts + focus + speed + grit) div 10)
+		
+AI:
+	If a pet has less than 10% health remaining:
+		If there is a bet without any damage:
+			Switch pet
+	
+	Otherwise:
+		switch(rand(1, 5))
+			case 1:
+				Use physical attack
+			case 2:
+				Use magic attack
+			case 3:
+				Use block
+			case 4:
+				Counter the player's best pick
+			case 5:
+				Use your best pick
+				
+	Determining best picks:
+		if (brawn > focus && brawn > grit)
+			Phys Attack
+		else if (focus > grit)
+			Mag. Attack
+		else
+			Block

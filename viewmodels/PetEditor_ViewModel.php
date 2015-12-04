@@ -150,7 +150,7 @@
         else
         {
           $view_data[ $pet_id_key ]     = $this->pet_to_edit->getId();
-          $view_data[ $name_key ]       = $this->pet_to_edit->getName();
+          $view_data[ $name_key ]       = isset( $form_name ) ? $form_name : $this->pet_to_edit->getName();
           $view_data[ $species_id_key ] = $this->pet_to_edit->getSpecies()->getId();
         }
       }
@@ -179,12 +179,13 @@
 
 
         // Check species_id is set
-        if ( empty( $form_species_id ) )
+        // Only using in create mode
+        if ( $create && empty( $form_species_id ) )
         {
           $view_data[ 'err_species' ] = "Please select a species.";
           $errors_found               = true;
         }
-        else
+        elseif ( $create )
         {
           // Get the int for species_id
           $sanitized_species_id = intval( $form_species_id );
@@ -221,7 +222,7 @@
             // Redirect to view pet if added successfully
             if ( $new_pet_id )
             {
-              HTTPUtils::my_http_redirect( 'pet.php?id=' . $new_pet_id );
+              HTTPUtils::my_http_redirect( 'pet.php?pet_id=' . $new_pet_id );
             }
             else
             {
@@ -241,7 +242,7 @@
             // Redirect to view pet if updated successfully
             if ( $updated )
             {
-              HTTPUtils::my_http_redirect( 'pet.php?id=' . $this->pet_to_edit->getId() );
+              HTTPUtils::my_http_redirect( 'pet.php?pet_id=' . $this->pet_to_edit->getId() );
             }
             else
             {

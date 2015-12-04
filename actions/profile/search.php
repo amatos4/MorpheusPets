@@ -11,8 +11,11 @@ $data    = MorpheusPetsData::getInstance();
 // Get logged in user
 $loggedInUser = $session->getLoggedInUser();
 
+// Username searched
+$usernameSearched = $_POST['search'];
+
 //Get profile's user
-$profileUser = $data->getUserByUserName($_POST['search']);
+$profileUser = $data->getUserByUserName($usernameSearched);
 
 if(!is_null($profileUser))
 {
@@ -26,6 +29,6 @@ else
 {
     //Setup view model
     $viewModel = new Error_ViewModel();
-    $viewModel->renderFailSearch();
+    $viewModel->renderFailSearch($usernameSearched);
 }
 

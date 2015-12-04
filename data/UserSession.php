@@ -3,9 +3,9 @@
 
   class UserSession
   {
-    public $user_logged_in = false;
+    private $user_logged_in = false;
 
-    public $logged_in_user = null;
+    private $logged_in_user = null;
 
     private $data;
 

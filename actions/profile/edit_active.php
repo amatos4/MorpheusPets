@@ -58,5 +58,5 @@
     {
         //Setup view model
         $viewModel = new Error_ViewModel();
-        $viewModel->renderUserNotExist();
+        $viewModel->renderUserNotExist($profileId);
     }

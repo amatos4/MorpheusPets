@@ -106,6 +106,16 @@ nav ul #search-button {
     overflow: hidden;
 }
 
+.card {
+  background-color: #FFF;
+  margin: 10px;
+  overflow: hidden;
+  padding: 15px;
+  -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+  -moz-box-shadow: 1px 1px 1px 1px #ccc;
+  box-shadow: 1px 1px 1px 1px #ccc;
+}
+
 .profile-badge {
     width: 100%;
 }
@@ -124,10 +134,7 @@ nav ul #search-button {
 }
 
 .profile-badge h1 {
-    font-size: 2em;
     margin-bottom: 10px;
-    color: #ff5722;
-    font-weight: 800;
     text-align: center;
 }
 
@@ -144,35 +151,20 @@ nav ul #search-button {
 }
 
 .pet-container > h1 {
-    font-size: 2em;
     margin-bottom: 10px;
-    color: #ff5722;
-    font-weight: 600;
 }
 
 .pet-badge {
-    background-color: #FFF;
     margin: 40px;
     position: relative;
-    overflow: hidden;
     width: auto;
-    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
-    -mox-box-shadow: 1px 1px 1px 1px #ccc;
-    box-shadow: 1px 1px 1px 1px #ccc;
 }
 
 .pet-badge-active {
-    background-color: #FFF;
     margin: 40px;
     position: relative;
-    overflow: hidden;
     width: auto;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #ff6f00;
-    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
-    -mox-box-shadow: 1px 1px 1px 1px #ccc;
-    box-shadow: 1px 1px 1px 1px #ccc;
+    border: 2px solid #ff6f00;
 }
 
 .pet-badge img {
@@ -191,9 +183,8 @@ nav ul #search-button {
     float: left;
 }
 
-.pet-stats h1 {
+.pet-stats h2 {
     text-transform: uppercase;
-    font-size: 1.5em;
     padding-top: 15px;
 }
 
@@ -211,50 +202,18 @@ nav ul #search-button {
   margin-bottom: 10px;
 }
 
-.pet-editor-header h1,
-.login-header h1,
-.register-header h1 {
-  font-size: 2em;
-  color: #ff5722;
-  font-weight: 800;
-}
-
-.pet-editor-form h2,
-.pet-editor-species-details-container h2,
-.login-form h2,
-.register-form h2 {
-  font-size: 1.5em;
-
-  color: #ff5722;
-  font-weight: 800;
-}
-
 .pet-editor-form {
-  background-color: #FFF;
-  margin: 10px;
   width: 50%;
-  padding: 15px;
   float: left;
-  -webkit-box-shadow: 1px 1px 1px 1px #ccc;
-  -moz-box-shadow: 1px 1px 1px 1px #ccc;
-  box-shadow: 1px 1px 1px 1px #ccc;
 }
 
 .pet-editor-species-details-container {
-  background-color: #FFF;
-  margin: 10px;
   position: relative;
-  overflow: hidden;
   width: 40%;
-  padding: 15px;
   float: right;
-  -webkit-box-shadow: 1px 1px 1px 1px #ccc;
-  -moz-box-shadow: 1px 1px 1px 1px #ccc;
-  box-shadow: 1px 1px 1px 1px #ccc;
 }
 
 .pet-editor-species-details-container h3 {
-  font-size: 1.5em;
   padding-top: 15px;
   text-align: center;
 }
@@ -271,13 +230,8 @@ nav ul #search-button {
 
 .login-form,
 .register-form {
-  background-color: #FFF;
   margin: 10px auto;
   width: 50%;
-  padding: 15px;
-  -webkit-box-shadow: 1px 1px 1px 1px #ccc;
-  -moz-box-shadow: 1px 1px 1px 1px #ccc;
-  box-shadow: 1px 1px 1px 1px #ccc;
 }
 
 #select-active {
@@ -374,6 +328,27 @@ label {
 }
 
 /* Text */
+h1 {
+  font-size: 2em;
+  color: #ff5722;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 1.5em;
+  color: #ff5722;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+h3 {
+  font-size: 1.25em;
+  color: #ff5722;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
 .small {
   font-size: 85%;
 }

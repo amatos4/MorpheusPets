@@ -9,7 +9,7 @@
   $password_error = isset( $data[ 'err_password' ] ) ? $data[ 'err_password' ] : null;
 ?>
 
-<section class="login-form">
+<section class="login-form card">
   <h2>Login</h2>
 
   <form id="login_form" enctype="multipart/form-data" action="login.php" method="POST">

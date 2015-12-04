@@ -27,7 +27,7 @@
     <h1><?php echo $header_title; ?></h1>
   </section>
 
-  <section class="pet-editor-form">
+  <section class="pet-editor-form card">
   <h2><?php echo $header_description; ?></h2>
 <?php
   // Display general error
@@ -91,7 +91,7 @@
     </form>
     </section>
 
-    <aside class="pet-editor-species-details-container">
+    <aside class="pet-editor-species-details-container card">
       <h2>Species Details</h2>
 
       <div id="pet_species_details">

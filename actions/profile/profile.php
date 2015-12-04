@@ -22,6 +22,8 @@
         // Setup view model
         $viewModel = new Profile_ViewModel( $loggedInUser , $profileUser);
 
+        $viewModel->setPetCollection($pet_collection);
+
         /** @var Pet $pet */
         foreach ( $pet_collection as $pet )
         {

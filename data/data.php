@@ -277,7 +277,7 @@
       $grit       = $pet->getGrit();
       $active     = intval( $pet->isActive() );
 
-      $this->updatePetStatement->bind_param( "iiiiiiiiii", $name, $experience, $brawn, $guts, $essence, $speed, $focus, $grit, $active, $id );
+      $this->updatePetStatement->bind_param( "siiiiiiiii", $name, $experience, $brawn, $guts, $essence, $speed, $focus, $grit, $active, $id );
 
       return $this->updatePetStatement->execute();
     }
@@ -495,6 +495,21 @@
       }
 
       return $ret;
+    }
+
+    /**
+     * Update User information
+     * @param User $profileUser
+     * @param string $description*/
+    public function updateUser($profileUser, $description)
+    {
+      $id = $profileUser->getId();
+      $username = $profileUser->getUsername();
+      $email_address = $profileUser->getEmailAddress();
+      $password_hash = $profileUser->getPasswordHash();
+
+      $this->updateUserStatement->bind_param("ssssi", $username, $password_hash, $email_address, $description, $id);
+      $this->updateUserStatement->execute();
     }
 
     /**

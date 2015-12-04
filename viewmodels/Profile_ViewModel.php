@@ -26,6 +26,11 @@
         /**
          * @var array all of the user's pet collection
          */
+        private $pet_collection = [ ];
+
+        /**
+         * @var array all of the user's non-active pet collection
+         */
         private $nonactive_pet_list = [ ];
 
         /**
@@ -42,6 +47,12 @@
             $this->logged_in_user = $user;
             $this->profile_user = $profileUser;
             $this->data           = MorpheusPetsData::getInstance();
+        }
+
+
+        public function setPetCollection ( $collection )
+        {
+            $this->pet_collection = $collection;
         }
 
         /**
@@ -71,6 +82,7 @@
             $view_data[ 'page_title' ]         = 'User Profile';
             $view_data[ 'js' ]                 = '<script src="js/user_profile.js"></script>';
 
+            $view_data[ 'pet_collection' ] = $this->pet_collection;
             $view_data[ 'active_pets' ] = $this->active_pet_list;
             $view_data[ 'nonactive_pets' ] = $this->nonactive_pet_list;
             $view_data[ 'profile_user' ] = $this->profile_user;

@@ -37,8 +37,8 @@ class Error_ViewModel extends ViewModel
 
         $view_data[ 'userIdNotFound' ] = $_GET['profileId'];
 
-        $this->renderTEmplate('templates/header.php', $view_data );
+        $this->renderTemplate('templates/header.php', $view_data );
         $this->renderTemplate( 'templates/error_view.php', $view_data );
-        $this->renderTEmplate( 'templates/footer.php', $view_data);
+        $this->renderTemplate( 'templates/footer.php', $view_data);
     }
 }

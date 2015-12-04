@@ -4,15 +4,26 @@
 (function ( $ )
 {
     $(document).ready(function() {
-        $(".small-btn").click(function(e){
+        $("#description-btn").click(function(e){
             e.preventDefault();
-            var content = document.getElementById("user-description").innerText;
-            $('#user-description').replaceWith('<form class="description-edit" enctype="multipart/form-data" action="#" method="POST">' +
-                '<input id="description-text" type="text" value=""/>' +
-                '<input type="submit" name="Submit"/>' +
-                '</form>');
-            document.getElementById("description-text").value = content;
+            document.getElementById("description-edit").style.display = "block";
         });
-
+    });
+    $(document).ready(function() {
+        $("#active_pet_btn").click(function(e1){
+            e1.preventDefault();
+            document.getElementById("pet-collection").style.display = "none";
+            document.getElementById("select-active").style.display = "block";
+        });
+    });
+    $(document).ready(function () {
+        $("input[type='checkbox']").change(function () {
+            var maxAllowed = 3;
+            var cnt = $("input[type='checkbox']:checked").length;
+            if (cnt > maxAllowed) {
+                $(this).prop("checked", "");
+                alert('Select maximum ' + maxAllowed + ' Active Pets!');
+            }
+        });
     });
 })( $ );

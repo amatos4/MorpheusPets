@@ -40,7 +40,7 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
         <?php if(!empty($active_list)) : ?>
             <?php /** @var Pet $active_pet */foreach ( $active_list as $active_pet ) : ?>
                 <li class="pet-badge-active card">
-                    <a href="#"><img src="images/shoyru.jpg" /></a>
+                    <a href="pet.php?pet_id=<?php echo $active_pet->getId()?>"><img src="<?php echo $active_pet->getSpecies()->getImageUrl()?>" /></a>
                     <div class="pet-stats" />
                         <h2><?php echo $active_pet->getName()?></h2>
                         <p><b>Species: </b><?php echo $active_pet->getSpecies()->getSpecies()?></p>
@@ -58,7 +58,7 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
         <?php if(!empty($non_active_list)) : ?>
             <?php /** @var Pet $non_active_pet */foreach ( $non_active_list as $non_active_pet ) : ?>
                 <li class="pet-badge card">
-                    <a href="#"><img src="images/shoyru.jpg" /></a>
+                    <a href="pet.php?pet_id=<?php echo $non_active_pet->getId()?>"><img src="<?php echo $non_active_pet->getSpecies()->getImageUrl()?>" /></a>
                     <div class="pet-stats" />
                         <h2><?php echo $non_active_pet->getName()?></h2>
                         <p><b>Species: </b><?php echo $non_active_pet->getSpecies()->getSpecies()?></p>
@@ -84,7 +84,7 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
         <input name="active[]" type="checkbox" value=<?php echo $pet->getId() ?> />
         <label for=<?php echo $pet->getId() ?>>
             <div class="pet-badge card">
-                <a href="#"><img src="images/shoyru.jpg" /></a>
+                <a href="pet.php?pet_id=<?php echo $pet->getId()?>"><img src="<?php echo $pet->getSpecies()->getImageUrl()?>" /></a>
                 <div class="pet-stats">
                     <h2><?php echo $pet->getName() ?></h2>
                     <p><b>Species: </b><?php echo $pet->getSpecies()->getSpecies() ?></p>

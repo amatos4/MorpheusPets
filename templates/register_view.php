@@ -13,7 +13,7 @@
   $description_error   = isset( $data[ 'err_description' ] ) ? $data[ 'err_description' ] : null;
 ?>
 
-<section class="register-form">
+<section class="register-form card">
   <h2>Register</h2>
 
   <form id="register_form" enctype="multipart/form-data" action="register.php" method="POST">

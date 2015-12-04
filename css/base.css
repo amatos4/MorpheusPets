@@ -242,6 +242,29 @@ nav ul #search-button {
     display: none;
 }
 
+.pet-viewer-pet-badge h1 {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.pet-viewer-pet-badge img {
+
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+}
+
+.pet-viewer-pet-badge .pet-viewer-experience {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.pet-viewer-stats-badge h2 {
+  text-align: center;
+}
+
 /* Forms */
 form {
   margin-top: 10px;

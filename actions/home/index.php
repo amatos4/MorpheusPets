@@ -7,12 +7,5 @@
   $viewModel = new Home_ViewModel();
 
   // TODO: Complete home action
-//  // Get posts
-//  $postsData = $data->getLastNPosts( $numberOfPostsToShow );
-//
-//  foreach ( $postsData as $postData )
-//  {
-//    $viewModel->addPost( $postData );
-//  }
 
   $viewModel->renderHome();

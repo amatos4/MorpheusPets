@@ -16,7 +16,6 @@
   $edit_mode    = isset( $data[ 'edit_mode' ] ) ? $data[ 'edit_mode' ] : null;
 
   // Errors
-  $general_error = isset( $data[ 'general_err' ] ) ? $data[ 'general_err' ] : null;
   $form_error    = isset( $data[ 'form_err' ] ) ? $data[ 'form_err' ] : null;
   $name_error    = isset( $data[ 'err_name' ] ) ? $data[ 'err_name' ] : null;
   $species_error = isset( $data[ 'err_species' ] ) ? $data[ 'err_species' ] : null;
@@ -28,18 +27,8 @@
   </section>
 
   <section class="pet-editor-form card">
-  <h2><?php echo $header_description; ?></h2>
-<?php
-  // Display general error
-  if ( isset( $general_error ) )
-  {
-    ?>
-    <p class="text-error" id="general_error"><?php echo $general_error; ?></p>
-    <?php
-  }
-  else
-  {
-    ?>
+    <h2><?php echo $header_description; ?></h2>
+
     <form id="pet_editor_form" enctype="multipart/form-data" action="pet_editor.php" method="POST">
       <small>*Leading and trailing spaces do not count.</small>
       <p class="text-error"
@@ -89,14 +78,12 @@
 
       <button type="submit" class="btn btn-primary" name="submit"><?php echo $submit_button_text ?></button>
     </form>
-    </section>
+  </section>
 
-    <aside class="pet-editor-species-details-container card">
-      <h2>Species Details</h2>
+  <aside class="pet-editor-species-details-container card">
+    <h2>Species Details</h2>
 
-      <div id="pet_species_details">
-      </div>
-    </aside>
-    <?php
-  }
-
+    <div id="pet_species_details">
+    </div>
+  </aside>
+<?php

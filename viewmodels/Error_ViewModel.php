@@ -68,4 +68,21 @@
       $this->renderTemplate( 'templates/error_view.php', $view_data );
       $this->renderTemplate( 'templates/footer.php', $view_data );
     }
+
+    /**
+     * Render the pet cannot be edited error page
+     *
+     * @param Pet $pet pet that cannot be edited
+     */
+    public function renderEditPetNotAllowed( $pet )
+    {
+      $view_data[ 'page_title' ] = 'Pet Not Found';
+      $view_data[ 'js' ]         = '<script src="js/error_page.js"></script>';
+
+      $view_data[ 'pet_edit_not_allowed' ] = $pet;
+
+      $this->renderTemplate( 'templates/header.php', $view_data );
+      $this->renderTemplate( 'templates/error_view.php', $view_data );
+      $this->renderTemplate( 'templates/footer.php', $view_data );
+    }
   }

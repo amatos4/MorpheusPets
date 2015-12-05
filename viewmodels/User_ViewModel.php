@@ -25,13 +25,14 @@
     public function renderLoginUser()
     {
       // POST keys
-      $submit_key    = 'submit';
+      $submit_key   = 'submit';
       $username_key = 'username';
-      $password_key  = 'password';
+      $password_key = 'password';
 
       // Form inputs
-      $username = null;
-      $password  = null;
+      $form_username = empty( $_POST[ $username_key ] ) ? null : StringUtils::sanitize( $_POST[ $username_key ] );
+      $form_password = empty( $_POST[ $password_key ] ) ? null : StringUtils::sanitize( $_POST[ $password_key ] );
+      $form_submit   = isset( $_POST[ $submit_key ] );
 
       $errors_found = false;
 
@@ -40,39 +41,29 @@
       $view_data[ 'js' ]         = '<script src="js/login.js"></script>';
 
       // Fill in view data
-      if ( isset( $_POST[ $username_key ] ) )
+      if ( $form_username !== null )
       {
-        $view_data[ 'username' ] = $_POST[ $username_key ];
+        $view_data[ 'username' ] = $form_username;
       }
-      if ( isset( $_POST[ $password_key ] ) )
+      if ( $form_password !== null )
       {
-        $view_data[ 'password' ] = $_POST[ $password_key ];
+        $view_data[ 'password' ] = $form_password;
       }
 
       // Check form was submitted
-      if ( isset( $_POST[ $submit_key ] ) )
+      if ( $form_submit )
       {
         // Check user name is set
-        if ( empty( $_POST[ $username_key ] ) || StringUtils::whitespaceOnly( $_POST[ $username_key ] ) )
+        if ( $form_username === null || StringUtils::whitespaceOnly( $form_username ) )
         {
           $view_data[ 'err_username' ] = "Please enter a user name.";
-          $errors_found                 = true;
-        }
-        else
-        {
-          // Sanitize the user name
-          $username = StringUtils::sanitize( $_POST[ $username_key ] );
+          $errors_found                = true;
         }
         // Check password is set
-        if ( empty( $_POST[ $password_key ] ) || StringUtils::whitespaceOnly( $_POST[ $password_key ] ) )
+        if ( $form_password === null || StringUtils::whitespaceOnly( $form_password ) )
         {
           $view_data[ 'err_password' ] = "Please enter a password.";
           $errors_found                = true;
-        }
-        else
-        {
-          // Sanitize the password
-          $password = StringUtils::sanitize( $_POST[ $password_key ] );
         }
 
         if ( $errors_found )
@@ -83,17 +74,17 @@
         else
         {
           // Validate password
-          $user = $this->data->getUserByUserName( $username );
+          $user = $this->data->getUserByUserName( $form_username );
 
           // User not found
-          if ( is_null( $user ) )
+          if ( $user === null )
           {
             $view_data[ 'form_err' ] = "User and password combination do not exist. Please try again.";
           }
           else
           {
             // Login if password matches
-            if ( $user->verifyPassword( $password ) )
+            if ( $user->verifyPassword( $form_password ) )
             {
               $_SESSION[ 'user_id' ] = $user->getId();
               HTTPUtils::my_http_redirect( 'index.php' );
@@ -118,17 +109,18 @@
     public function renderRegisterUser()
     {
       // POST keys
-      $submit_key     = 'submit';
-      $username_key  = 'username';
-      $password_key   = 'password';
+      $submit_key        = 'submit';
+      $username_key      = 'username';
+      $password_key      = 'password';
       $email_address_key = 'email_address';
-      $description_key  = 'description';
+      $description_key   = 'description';
 
       // Form inputs
-      $username  = null;
-      $password   = null;
-      $email_address = null;
-      $description  = null;
+      $form_username      = empty( $_POST[ $username_key ] ) ? null : StringUtils::sanitize( $_POST[ $username_key ] );
+      $form_password      = empty( $_POST[ $password_key ] ) ? null : StringUtils::sanitize( $_POST[ $password_key ] );
+      $form_email_address = empty( $_POST[ $email_address_key ] ) ? null : StringUtils::sanitize( $_POST[ $email_address_key ] );
+      $form_description   = empty( $_POST[ $description_key ] ) ? null : StringUtils::sanitize( $_POST[ $description_key ] );
+      $form_submit        = isset( $_POST[ $submit_key ] );
 
       $errors_found = false;
 
@@ -137,99 +129,79 @@
       $view_data[ 'js' ]         = '<script src="js/register.js"></script>';
 
       // Fill in view data
-      if ( isset( $_POST[ $username_key ] ) )
+      if ( $form_username !== null )
       {
-        $view_data[ 'username' ] = $_POST[ $username_key ];
+        $view_data[ 'username' ] = $form_username;
       }
-      if ( isset( $_POST[ $password_key ] ) )
+      if ( $form_password !== null )
       {
-        $view_data[ 'password' ] = $_POST[ $password_key ];
+        $view_data[ 'password' ] = $form_password;
       }
-      if ( isset( $_POST[ $email_address_key ] ) )
+      if ( $form_email_address !== null )
       {
-        $view_data[ 'email_address' ] = $_POST[ $email_address_key ];
+        $view_data[ 'email_address' ] = $form_email_address;
       }
-      if ( isset( $_POST[ $description_key ] ) )
+      if ( $form_description !== null )
       {
-        $view_data[ 'description' ] = $_POST[ $description_key ];
+        $view_data[ 'description' ] = $form_description;
       }
 
       // Check form was submitted
-      if ( isset( $_POST[ $submit_key ] ) )
+      if ( $form_submit )
       {
         // Check user name is set
-        if ( empty( $_POST[ $username_key ] ) || StringUtils::whitespaceOnly( $_POST[ $username_key ] ) )
+        if ( $form_username === null || StringUtils::whitespaceOnly( $form_username ) )
         {
           $view_data[ 'err_username' ] = "Please enter a user name.";
-          $errors_found                 = true;
+          $errors_found                = true;
         }
-        else
+        elseif ( strlen( $form_username ) > 100 )
         {
-          // Sanitize the user name
-          $username = StringUtils::sanitize( $_POST[ $username_key ] );
-
-          // Check user name meets length requirements
-          if ( strlen( $username ) > 100 )
-          {
-            $view_data[ 'err_username' ] = "Please enter a user name that is no greater than 100 characters.";
-            $errors_found                 = true;
-          }
+          $view_data[ 'err_username' ] = "Please enter a user name that is no greater than 100 characters.";
+          $errors_found                = true;
         }
 
         // Check password is set
-        if ( empty( $_POST[ $password_key ] ) || StringUtils::whitespaceOnly( $_POST[ $password_key ] ) )
+        if ( $form_password === null || StringUtils::whitespaceOnly( $form_password ) )
         {
           $view_data[ 'err_password' ] = "Please enter a password.";
           $errors_found                = true;
         }
-        else
-        {
-          $password = StringUtils::sanitize( $_POST[ $password_key ] );
-        }
 
         // Check email address is set
-        if ( empty( $_POST[ $email_address_key ] ) || StringUtils::whitespaceOnly( $_POST[ $email_address_key ] ) )
+        if ( $form_email_address === null || StringUtils::whitespaceOnly( $form_email_address ) )
         {
           $view_data[ 'err_email_address' ] = "Please enter an email address.";
-          $errors_found                  = true;
+          $errors_found                     = true;
         }
-        else
+        // Check email address is valid
+        elseif ( !filter_var( $form_email_address, FILTER_VALIDATE_EMAIL ) )
         {
-          // Sanitize the email address
-          $email_address = StringUtils::sanitize( $_POST[ $email_address_key ] );
-
-          // TODO: Check email address follows the right pattern
+          $view_data[ 'err_email_address' ] = "Please enter a valid email address.";
+          $errors_found                     = true;
         }
 
         // Check description is set
-        if ( empty( $_POST[ $description_key ] ) || StringUtils::whitespaceOnly( $_POST[ $description_key ] ) )
+        if ( $form_description === null || StringUtils::whitespaceOnly( $form_description ) )
         {
           $view_data[ 'err_description' ] = "Please enter a brief description.";
-          $errors_found                 = true;
-        }
-        else
-        {
-          // Sanitize the description
-          $description = StringUtils::sanitize( $_POST[ $description_key ] );
+          $errors_found                   = true;
         }
 
-        if ( $errors_found )
-        {
-          $view_data[ 'form_err' ] = "Please see errors below.";
-        }
         // Form was submitted without errors
-        else
+        if ( !$errors_found )
         {
           // Check if user with given username already exists
-          if ( !is_null( $this->data->getUserByUserName( $username ) ) )
+          if ( $this->data->getUserByUserName( $form_username ) !== null )
           {
             $view_data[ 'err_username' ] = "User with this username already exists. Please enter another one.";
+            $errors_found                = true;
           }
           else
           {
             // Add user to database
-            $new_user = new User( $username, $email_address, $description );
-            $new_user->setPassword( $password );
+            $new_user = new User( $form_username, $form_email_address, $form_description );
+            $new_user->setPassword( $form_password );
 
             $new_user_id = $this->data->addUser( $new_user );
 
@@ -244,6 +216,11 @@
               $view_data[ 'form_err' ] = "Failed to add new user. Please try again.";
             }
           }
+        }
+
+        if ( $errors_found )
+        {
+          $view_data[ 'form_err' ] = "Please see errors below.";
         }
       }
 

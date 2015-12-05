@@ -29,10 +29,8 @@
         array_push($active_pets, $data->getPet($pet_id));
     }
 
-    var_dump($profileId);
-    var_dump($profileUser);
-
-    if(($loggedInUser->getId() == $profileUser->getId()) && !is_null($loggedInUser))
+    // Check if logged in user is the profile user, if the user is logged in, or they chose 3 active pets
+    if(($loggedInUser->getId() == $profileUser->getId()) && !is_null($loggedInUser) && sizeof($active_pets) > 3)
     {
         /** @var array $pet_collection */
         $pet_collection = $data->getAllPetsForUser($profileId);
@@ -58,5 +56,8 @@
     {
         //Setup view model
         $viewModel = new Error_ViewModel();
-        $viewModel->renderUserNotExist($profileId);
+        if(sizeof($active_pets) > 3)
+        {
+            $viewModel->renderEditActivePetsNotAllowed($profileUser->getId());
+        }
     }

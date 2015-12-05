@@ -4,6 +4,7 @@ require_once 'viewmodels/Error_ViewModel.php';
 require_once 'data/UserSession.php';
 require_once 'data/data.php';
 require_once 'utils/http.php';
+require_once 'utils/string.php';
 
 $session = UserSession::getInstance();
 $data    = MorpheusPetsData::getInstance();
@@ -12,7 +13,7 @@ $data    = MorpheusPetsData::getInstance();
 $loggedInUser = $session->getLoggedInUser();
 
 // Username searched
-$usernameSearched = $_POST['search'];
+$usernameSearched = StringUtils::sanitize($_POST['search']);
 
 //Get profile's user
 $profileUser = $data->getUserByUserName($usernameSearched);

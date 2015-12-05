@@ -85,4 +85,16 @@
       $this->renderTemplate( 'templates/error_view.php', $view_data );
       $this->renderTemplate( 'templates/footer.php', $view_data );
     }
+
+    public function renderEditActivePetsNotAllowed( $id )
+    {
+      $view_data[ 'page_title' ] = 'Pet Not Found';
+      $view_data[ 'js' ]         = '<script src="js/error_page.js"></script>';
+
+      $view_data['active_edit_not_allowed'] = $id;
+
+      $this->renderTemplate( 'templates/header.php', $view_data );
+      $this->renderTemplate( 'templates/error_view.php', $view_data );
+      $this->renderTemplate( 'templates/footer.php', $view_data );
+    }
   }

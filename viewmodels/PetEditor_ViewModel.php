@@ -113,13 +113,13 @@
 
       $errors_found = false;
 
-      // Gather form inputs
-      $form_name       = isset( $_POST[ $name_key ] ) ? $_POST[ $name_key ] : null;
-      $form_species_id = isset( $_POST[ $species_id_key ] ) ? $_POST[ $species_id_key ] : null;
+      // Gather sanitized form inputs
+      $form_name       = empty( $_POST[ $name_key ] ) ? null : StringUtils::sanitize( $_POST[ $name_key ] );
+      $form_species_id = empty( $_POST[ $species_id_key ] ) ? null : intval( StringUtils::sanitize( [ $species_id_key ] ) );
+      $form_submit     = isset( $_POST[ $species_id_key ] );
 
-      // Sanitized inputs
-      $sanitized_name = null;
-      $species        = null;
+      // Other data
+      $species = null;
 
       // View config
       $view_data[ 'species_list' ] = $this->species_list;
@@ -127,8 +127,15 @@
       // Pet is being created
       if ( $create )
       {
-        $view_data[ $name_key ]       = $form_name;
-        $view_data[ $species_id_key ] = $form_species_id;
+        // Fill in view data
+        if ( $form_name !== null )
+        {
+          $view_data[ $name_key ] = $form_name;
+        }
+        if ( $form_species_id !== null )
+        {
+          $view_data[ $species_id_key ] = $form_species_id;
+        }
       }
       // Check if an existing pet is being edited
       else
@@ -149,48 +156,38 @@
         }
         else
         {
+          // Fill in view data
           $view_data[ $pet_id_key ]     = $this->pet_to_edit->getId();
-          $view_data[ $name_key ]       = isset( $form_name ) ? $form_name : $this->pet_to_edit->getName();
+          $view_data[ $name_key ]       = $form_name === null ? $this->pet_to_edit->getName() : $form_name;
           $view_data[ $species_id_key ] = $this->pet_to_edit->getSpecies()->getId();
         }
       }
 
       // Check form was submitted without error
-      if ( !isset( $view_data[ 'general_err' ] ) && isset( $_POST[ $submit_key ] ) )
+      if ( !isset( $view_data[ 'general_err' ] ) && $form_submit )
       {
         // Check name is set
-        if ( empty( $form_name ) || StringUtils::whitespaceOnly( $form_name ) )
+        if ( $form_name === null || StringUtils::whitespaceOnly( $form_name ) )
         {
           $view_data[ 'err_name' ] = "Please enter a name.";
           $errors_found            = true;
         }
-        else
+        elseif ( strlen( $form_name ) > 64 )
         {
-          // Sanitize the name
-          $sanitized_name = StringUtils::sanitize( $form_name );
-
-          // Check name meets length requirements
-          if ( strlen( $sanitized_name ) > 64 )
-          {
-            $view_data[ 'err_name' ] = "Please enter a name that is no greater than 64 characters.";
-            $errors_found            = true;
-          }
+          $view_data[ 'err_name' ] = "Please enter a name that is no greater than 64 characters.";
+          $errors_found            = true;
         }
-
 
         // Check species_id is set
         // Only using in create mode
-        if ( $create && empty( $form_species_id ) )
+        if ( $create && $form_species_id === 0 )
         {
           $view_data[ 'err_species' ] = "Please select a species.";
           $errors_found               = true;
         }
         elseif ( $create )
         {
-          // Get the int for species_id
-          $sanitized_species_id = intval( $form_species_id );
-
-          $species = $this->data->getSpecies( $sanitized_species_id );
+          $species = $this->data->getSpecies( $form_species_id );
 
           if ( $species === null )
           {
@@ -211,7 +208,7 @@
           // Check if a pet is being created
           if ( $create )
           {
-            $new_pet = new Pet( $this->logged_in_user, $species, $sanitized_name );
+            $new_pet = new Pet( $this->logged_in_user, $species, $form_name );
 
             // Generate initial stats
             $new_pet->rollStats();
@@ -234,7 +231,7 @@
           {
             // Update pet fields
             // Species cannot be modified
-            $this->pet_to_edit->setName( $sanitized_name );
+            $this->pet_to_edit->setName( $form_name );
 
             // Update pet in database
             $updated = $this->data->updatePet( $this->pet_to_edit );

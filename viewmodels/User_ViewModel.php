@@ -188,17 +188,14 @@
           $errors_found                   = true;
         }
 
-        if ( $errors_found )
-        {
-          $view_data[ 'form_err' ] = "Please see errors below.";
-        }
         // Form was submitted without errors
-        else
+        if ( !$errors_found )
         {
           // Check if user with given username already exists
           if ( $this->data->getUserByUserName( $form_username ) !== null )
           {
             $view_data[ 'err_username' ] = "User with this username already exists. Please enter another one.";
+            $errors_found                = true;
           }
           else
           {
@@ -219,6 +216,11 @@
               $view_data[ 'form_err' ] = "Failed to add new user. Please try again.";
             }
           }
+        }
+
+        if ( $errors_found )
+        {
+          $view_data[ 'form_err' ] = "Please see errors below.";
         }
       }
 

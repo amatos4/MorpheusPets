@@ -144,27 +144,14 @@
         // Species should not be modifiable
         $view_data[ 'edit_mode' ] = true;
 
-        // Check if pet was found
-        if ( $this->pet_to_edit === null )
-        {
-          $view_data[ 'general_err' ] = 'The pet to be edited does not exist.';
-        }
-        // Check if user can edit the pet
-        elseif ( !PetUtils::userCanEditPet( $this->logged_in_user, $this->pet_to_edit ) )
-        {
-          $view_data[ 'general_err' ] = "You are not allowed to edit this pet.";
-        }
-        else
-        {
-          // Fill in view data
-          $view_data[ $pet_id_key ]     = $this->pet_to_edit->getId();
-          $view_data[ $name_key ]       = $form_name === null ? $this->pet_to_edit->getName() : $form_name;
-          $view_data[ $species_id_key ] = $this->pet_to_edit->getSpecies()->getId();
-        }
+        // Fill in view data
+        $view_data[ $pet_id_key ]     = $this->pet_to_edit->getId();
+        $view_data[ $name_key ]       = $form_name === null ? $this->pet_to_edit->getName() : $form_name;
+        $view_data[ $species_id_key ] = $this->pet_to_edit->getSpecies()->getId();
       }
 
       // Check form was submitted without error
-      if ( !isset( $view_data[ 'general_err' ] ) && $form_submit )
+      if ( $form_submit )
       {
         // Check name is set
         if ( $form_name === null || StringUtils::whitespaceOnly( $form_name ) )

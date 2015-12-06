@@ -13,8 +13,8 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
 
 ?>
 
-<?php if (!$can_edit_bool && !empty($active_list) && !is_null($logged_in_user) && (count($active_list) != 3) ) : ?>
-<div class="btn" xmlns="http://www.w3.org/1999/html"><a href="">Start Battle!</a></div>
+<?php if (!$can_edit_bool && !empty($active_list) && !is_null($logged_in_user) && (count($active_list) == 3) ) : ?>
+<div class="btn" xmlns="http://www.w3.org/1999/html"><a href="battle.php?enemyId=<?php echo $_GET['profileId'] ?>">Start Battle!</a></div>
 <?php endif; ?>
 
 <section class="profile-badge">

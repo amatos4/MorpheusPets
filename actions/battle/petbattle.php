@@ -23,5 +23,5 @@
     {
         //Setup view model
         $viewModel = new Error_ViewModel();
-        $viewModel->renderUserNotExist($loggedInUser);
+        $viewModel->renderUserNotExist($loggedInUser->getID());
     }

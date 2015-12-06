@@ -12,38 +12,43 @@
 		private $user_health;
 		private $enemy_health;
 		
-		public function Setup() {
+		public function Setup($user, $enemy) {
 			$data = MorpheusPetsData::getInstance();
 			if($this->setup != 1) {
 				//session_start();
-				$_SESSION['enemy'] = 2;
-				$_SESSION['user'] = 1;
-				if(isset($_SESSION['user'])){
-					$this->user = $_SESSION['user'];
-				} if(isset($_SESSION['enemy'])){
-					$this->enemy = $_SESSION['enemy'];
-				}
+				//$_SESSION['enemy'] = 2;
+				//$_SESSION['user'] = 1;
+				$this->user = $user;
+				$this->enemy = $enemy;
 				
 				$this->enemy_team = $data->getActivePetsForUser($this->enemy);
 				$this->user_team = $data->getActivePetsForUser($this->user);
 				
-				$this->activePet = 0;
-				$this->activeEnemyPet = 0;
-				$this->user_health = [];
-				$this->enemy_health = [];
+				if((count($this->user_team) == 3) && (count($this->enemy_team) == 3)) {
 				
-				for($x = 0; $x < 3; $x++) {
-					$user_pet = $this->user_team[$x];
-					$pet_health = $this->createHealth($user_pet);
-					$this->user_health[$x] = array($pet_health, $pet_health);
+					//echo "success";
+					$this->activePet = 0;
+					$this->activeEnemyPet = 0;
+					$this->user_health = [];
+					$this->enemy_health = [];
+				
+					for($x = 0; $x < 3; $x++) {
+						$user_pet = $this->user_team[$x];
+						$pet_health = $this->createHealth($user_pet);
+						$this->user_health[$x] = array($pet_health, $pet_health);
 					
-					$enemy_pet = $this->enemy_team[$x];
-					$e_pet_health = $this->createHealth($enemy_pet);
-					$this->enemy_health[$x] = array($e_pet_health, $e_pet_health);
+						$enemy_pet = $this->enemy_team[$x];
+						$e_pet_health = $this->createHealth($enemy_pet);
+						$this->enemy_health[$x] = array($e_pet_health, $e_pet_health);
+					}
 				}
+				else {
 				//echo "Setting up";
+					return -1;
+				}
 				
 				$this->setup = 1;
+				return "Make your move!";
 			}
 		}
 		

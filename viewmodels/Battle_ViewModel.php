@@ -42,7 +42,7 @@
             $view_data[ 'page_title' ]         = 'Battle!';
             $view_data[ 'logged_in_user' ] = $this->logged_in_user;
 
-            $this->renderTemplate( 'templates/battle_header.php', $view_data );
+            $this->renderTemplate( 'templates/header.php', $view_data );
             $this->renderTemplate( 'templates/battle_view.php', $view_data );
             $this->renderTemplate( 'templates/footer.php', $view_data );
         }

@@ -200,6 +200,13 @@
             // Generate initial stats
             $new_pet->rollStats();
 
+            // Make pet active if user does not have a full active set
+            $active_pets = $this->data->getActivePetsForUser( $this->logged_in_user->getId() );
+            if ( count( $active_pets ) < 3 )
+            {
+              $new_pet->setActive( true );
+            }
+
             // Add pet to database
             $new_pet_id = $this->data->addPet( $new_pet );
 

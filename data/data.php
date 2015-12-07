@@ -19,6 +19,7 @@
     private $getUserStatement;
     private $getUserByUserNameStatement;
     private $updateUserStatement;
+    private $getLikeUsers;
 
     private $addSpeciesStatement;
     private $getSpeciesStatement;
@@ -512,6 +513,45 @@
       $this->updateUserStatement->execute();
     }
 
+    /** Search for Users Similar to the Query
+     * @param string $search
+     * @return array $ret */
+    public function getLikeUsers($search)
+    {
+      $ret = [];
+      $query = null;
+
+      $id            = null;
+      $res_username  = null;
+      $description   = null;
+
+      if( sizeof($search) > 4)
+      {
+        $query = substr($search, 0, 4) . "%";
+
+        $this->getLikeUsers->bind_param("s", $query);
+      }
+      else {
+        $query = $search . "%";
+
+        $this->getLikeUsers->bind_param("s", $query);
+      }
+
+      $this->getLikeUsers->execute();
+      $this->getLikeUsers->bind_result( $id, $res_username, $description );
+
+      while ( $this->getLikeUsers->fetch() )
+      {
+        $user = new User( $res_username, null, $description );
+        $user->setPasswordHash( null );
+        $user->setId( $id );
+
+        array_push($ret, $user);
+      }
+
+      return $ret;
+    }
+
     /**
      * MorpheusPetsData constructor.
      * Initialize prepared statements
@@ -530,6 +570,7 @@
       $this->getUserStatement           = $this->dbConnection->prepare_statement( "SELECT * FROM `users` WHERE `id`=?" );
       $this->getUserByUserNameStatement = $this->dbConnection->prepare_statement( "SELECT * FROM `users` WHERE `username`=?" );
       $this->updateUserStatement        = $this->dbConnection->prepare_statement( "UPDATE `users` SET `username`=?, `password_hash`=?, `email_address`=?, `description`=? WHERE `id`=?" );
+      $this->getLikeUsers               = $this->dbConnection->prepare_statement( "SELECT `id`, `username`, `description` FROM `users` WHERE `username` LIKE ?" );
 
       $this->addSpeciesStatement       = $this->dbConnection->prepare_statement( "INSERT INTO `species` (`species`, `type`, `stats`) VALUES(?, ?, ?)" );
       $this->getSpeciesStatement       = $this->dbConnection->prepare_statement( "SELECT * FROM `species` WHERE `id`=?" );
@@ -621,6 +662,10 @@
       if ( $this->updateSpeciesStatement )
       {
         $this->updateSpeciesStatement->close();
+      }
+      if( $this->getLikeUsers )
+      {
+        $this->getLikeUsers->close();
       }
     }
   }

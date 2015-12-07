@@ -14,7 +14,7 @@
     // Username Not Found Error
     if ( $username_not_found !== null )
     {
-      echo "<h1>User <b>@" . $username_not_found . "</b> could not be found.</h1>";
+      echo "<h1>Users similar to <b>@" . $username_not_found . "</b> could not be found.</h1>";
     }
   ?>
   <?php

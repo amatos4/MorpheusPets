@@ -20,16 +20,23 @@ $profileUser = $data->getUserByUserName($usernameSearched);
 
 if(!is_null($profileUser))
 {
-//    // Setup view model
-//    $viewModel = new Profile_ViewModel( $loggedInUser , $profileUser);
-//    $viewModel->renderProfile();
     $profileId = $profileUser->getId();
     HTTPUtils::my_http_redirect( "my_profile.php?profileId=$profileId" );
 }
 else
 {
-    //Setup view model
-    $viewModel = new Error_ViewModel();
-    $viewModel->renderFailSearch($usernameSearched);
+
+    $ret = $data->getLikeUsers($usernameSearched);
+
+    if( !is_null($ret) )
+    {
+        $viewModel = new Profile_ViewModel($loggedInUser, $profileUser);
+        $viewModel->renderSearchResults( $ret );
+    }
+    else {
+        //Setup view model
+        $viewModel = new Error_ViewModel();
+        $viewModel->renderFailSearch($usernameSearched);
+    }
 }
 

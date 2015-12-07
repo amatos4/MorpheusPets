@@ -98,4 +98,17 @@
             $this->renderTemplate( 'templates/footer.php', $view_data );
         }
 
+        /** @param array $ret */
+        public function renderSearchResults( $ret )
+        {
+            $view_data[ 'page_title' ]         = 'User Profile';
+            $view_data[ 'js' ]                 = '<script src="js/user_profile.js"></script>';
+
+            $view_data[ 'search_results' ] = $ret;
+
+            $this->renderTemplate( 'templates/header.php', $view_data );
+            $this->renderTemplate( 'templates/search_results.php', $view_data );
+            $this->renderTemplate( 'templates/footer.php', $view_data );
+        }
+
     }

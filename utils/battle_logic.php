@@ -476,7 +476,7 @@ class Battle {
 
 
 				for ($curstat = 0; $curstat < 6; $curstat ++) {
-					echo $priority[$curstat];
+					//echo $priority[$curstat];
 					switch($priority[$curstat]){
 						case 'b':
 							$this->user_team[$x]->setBrawn($this->user_team[$x]->getBrawn() + $statincrease[$curstat]);

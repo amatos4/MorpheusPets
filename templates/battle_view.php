@@ -6,6 +6,7 @@
 	else {
 		$_SESSION['battle'] = new Battle();
 		$battle = $_SESSION['battle'];
+		unset($_SESSION['conclusion']);
 	}
 
 	$alert = "Make your move!";
@@ -95,16 +96,20 @@
 		$user_health = $battle->getUserHealth();
 		$enemy_health = $battle->getEnemyHealth();
 
-		if(!isset($_SESSION['conclusion'])) {
+		if(!isset($_SESSION['conclusion'])) { 
 			$conclusion = $battle->checkConclusion();
 			if($conclusion[0] == true) {
 				$alert .= $conclusion[1];
-				$_SESSION['conclusion'] = $conclusion;
+				$_SESSION['conclusion'] = $conclusion; //Possibly empty battles here
 			}
 		}
 	}
 ?>
-<?php if ($valid != -1) :?>
+<?php if(isset($_SESSION['conclusion'])) :?>
+	<h1><?php echo $alert ?></h1>
+	<h2>Please click <a href="index.php">here</a> to leave the battle.</h2>
+	<?php unset($_SESSION['battle']); ?>
+<?php elseif ($valid != -1) :?>
 
 	<section class="enemy-info">
 		<h1>Enemy Team</h1>
@@ -154,5 +159,5 @@
 		</table>
 	</section>
 <?php else : ?>
-	<p id='game_alert' class='game_alert'> Not enough active pets for a battle to occur. Please go back to the home page and add more pets to your active team.</p>
+	<p id='game_alert' class='game_alert'> Not enough active pets for a battle to occur, or a battle has already been finished. Please go back to the home page and add more pets to your active team.</p>
 <?php endif; ?>

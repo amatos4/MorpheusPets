@@ -48,6 +48,7 @@
           species_details_container.append( name_element );
 
           image_element.attr( "src", species_details.image_url );
+          image_element.attr( "alt", species_details.species );
           species_details_container.append( image_element );
 
           type_element.html( "<b>Type: </b> " + species_details.type );

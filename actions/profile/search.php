@@ -13,7 +13,7 @@ $data    = MorpheusPetsData::getInstance();
 $loggedInUser = $session->getLoggedInUser();
 
 // Username searched
-$usernameSearched = StringUtils::sanitize($_POST['search']);
+$usernameSearched = StringUtils::sanitize($_GET['search']);
 
 //Get profile's user
 $profileUser = $data->getUserByUserName($usernameSearched);

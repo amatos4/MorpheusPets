@@ -41,7 +41,7 @@
 
       <div class="navbar-right">
         <form class="navbar-form" id="search_form" enctype="multipart/form-data" action="search.php"
-              method="POST">
+              method="GET">
           <div class="form-group">
             <input class="form-control" id="search-bar" name="search" type="text" placeholder="Search User..." required>
             <input class="btn" id="search-button" name="search_submit" type="submit" value="Go">

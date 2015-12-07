@@ -57,9 +57,9 @@ nav {
     overflow: hidden;
 }
 
-nav ul{
+nav ul {
     margin: 0px 30px;
-    padding-top: 10px;
+    padding: 5px 0;
 }
 nav ul li {
     display: inline-block;
@@ -67,7 +67,7 @@ nav ul li {
     padding: 2px;
 }
 
-nav > ul > li > a {
+nav ul > li > a {
     color: #FFF;
     background-color:#000033;
     display: block;
@@ -76,28 +76,52 @@ nav > ul > li > a {
     text-decoration: none;
 }
 
-nav > ul > li > a:hover {
+nav ul > li > a:hover {
     color: #ff5722;
 }
 
-nav ul form {
-    display: inline-block;
-    padding: 2px;
+nav form {
+  width: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 0 5px;
+  border: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
-nav ul #search-bar {
-    margin-left: 40px;
-    display: inline-block;
-    padding: 2px;
+nav form .form-group {
+  display: inline-block;
+  margin: 0;
+  padding: 5px 0;
+  vertical-align: middle;
 }
 
-nav ul #search-button {
-    display: inline-block;
-    padding: 2px;
+nav form .form-group > input {
+  vertical-align: middle;
 }
 
-.logout, .login, .register {
-    float: right;
+nav form .form-control {
+  display: inline-block;
+  width: auto;
+  vertical-align: middle;
+}
+
+.navbar-left {
+  float: left!important;
+}
+
+.navbar-right {
+  float: right!important;
+}
+
+.navbar-right > form {
+  float: left;
+}
+
+.navbar-right > ul {
+  float: left;
 }
 
 #container {
@@ -411,7 +435,7 @@ label {
     font-family: Arial;
     color: #ffffff;
     font-size: 20px;
-    padding: 10px 20px 10px 20px;
+    padding: 5px 15px 5px 15px;
     text-decoration: none;
     width: auto;
     display: inline-block;

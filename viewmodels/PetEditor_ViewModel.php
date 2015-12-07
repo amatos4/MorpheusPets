@@ -115,7 +115,7 @@
 
       // Gather sanitized form inputs
       $form_name       = empty( $_POST[ $name_key ] ) ? null : StringUtils::sanitize( $_POST[ $name_key ] );
-      $form_species_id = empty( $_POST[ $species_id_key ] ) ? null : intval( StringUtils::sanitize( [ $species_id_key ] ) );
+      $form_species_id = empty( $_POST[ $species_id_key ] ) ? null : intval( StringUtils::sanitize( $_POST[ $species_id_key ] ) );
       $form_submit     = isset( $_POST[ $submit_key ] );
 
       // Other data

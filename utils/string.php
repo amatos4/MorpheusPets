@@ -23,6 +23,6 @@
      */
     public static function whitespaceOnly( $str )
     {
-      return isset( $str ) && ctype_space( $str );
+      return isset( $str ) && ( $str === "" || ctype_space( $str ) );
     }
   }

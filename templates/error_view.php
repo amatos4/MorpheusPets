@@ -6,6 +6,7 @@
   /** @var Pet $pet_edit_not_allowed */
   $pet_edit_not_allowed = isset( $data[ 'pet_edit_not_allowed' ] ) ? $data[ 'pet_edit_not_allowed' ] : null;
   $active_edit_not_allowed = isset( $data[ 'active_edit_not_allowed' ] ) ? $data[ 'active_edit_not_allowed' ] : null;
+  $no_pets = isset( $data[ 'no_pets' ] ) ? $data[ 'no_pets' ] : null;
 ?>
 
 <section id="error">
@@ -41,7 +42,15 @@
     //active_edit_not_allowed
     if ( $active_edit_not_allowed !== null )
     {
-      echo "<h1>User with id <b>" . $active_edit_not_allowed . "</b> could not have their active pets edited. Must choose 3 or less pets to be active.</h1>";
+      echo "<h1>User with id <b>" . $active_edit_not_allowed . "</b> could not have their active pets edited. Must choose 3 pets to be active. If you do not have 3 pets, please create more!</h1>";
     }
   ?>
+  <?php
+  //active_edit_not_allowed
+  if ( $no_pets !== null )
+  {
+    echo "<h1>User with id <b>" . $active_edit_not_allowed . "</b> has no pets to edit and set as active.</h1>";
+  }
+  ?>
+
 </section>

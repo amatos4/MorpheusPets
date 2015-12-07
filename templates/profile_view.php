@@ -35,7 +35,9 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
 
 <section class="pet-container">
     <h1>My Pet Collection</h1>
+    <?php if(!empty($pet_collection) && sizeof($pet_collection) >= 3) : ?>
     <div id="active_pet_btn" class="small-btn"><a href="">Change Active Pets</a></div>
+    <?php endif; ?>
     <ul id="pet-collection">
         <?php if(!empty($active_list)) : ?>
             <?php /** @var Pet $active_pet */foreach ( $active_list as $active_pet ) : ?>

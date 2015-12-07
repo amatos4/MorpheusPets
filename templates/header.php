@@ -34,6 +34,7 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
             <?php if ( !is_null( $logged_in_user )) : ?>
             <li><a href="my_profile.php?profileId=<?php echo $logged_in_user->getId() ?>">My Profile</a></li>
             <li class="logout"><a href="logout.php">Logout</a></li>
+            <li class="logout"><a href="pet_editor.php">Create Pet</a></li>
             <?php endif; ?>
             <form id="search_form" enctype="multipart/form-data" action="search.php" method="POST">
                 <input id="search-bar" name="search" type="text" placeholder="Search..." required>

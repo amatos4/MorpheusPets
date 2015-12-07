@@ -97,4 +97,17 @@
       $this->renderTemplate( 'templates/error_view.php', $view_data );
       $this->renderTemplate( 'templates/footer.php', $view_data );
     }
+
+    public function renderNoPetsToSet( )
+  {
+    $view_data[ 'page_title' ] = 'Pet Not Found';
+    $view_data[ 'js' ]         = '<script src="js/error_page.js"></script>';
+
+    $view_data['no_pets'] = true;
+
+    $this->renderTemplate( 'templates/header.php', $view_data );
+    $this->renderTemplate( 'templates/error_view.php', $view_data );
+    $this->renderTemplate( 'templates/footer.php', $view_data );
+  }
+
   }

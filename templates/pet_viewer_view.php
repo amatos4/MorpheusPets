@@ -1,14 +1,14 @@
 <?php
-  // Header stuff
-  $header_title       = isset( $data[ 'header_title' ] ) ? $data[ 'header_title' ] : null;
-  $header_description = isset( $data[ 'header_description' ] ) ? $data[ 'header_description' ] : null;
+// Header stuff
+$header_title       = isset( $data[ 'header_title' ] ) ? $data[ 'header_title' ] : null;
+$header_description = isset( $data[ 'header_description' ] ) ? $data[ 'header_description' ] : null;
 
-  // Model
-  /** @var Pet $pet */
-  $pet = isset( $data[ 'pet' ] ) ? $data[ 'pet' ] : null;
+// Model
+/** @var Pet $pet */
+$pet = isset( $data[ 'pet' ] ) ? $data[ 'pet' ] : null;
 
-  // Other Data
-  $edit_mode = isset( $data[ 'edit_mode' ] ) ? $data[ 'edit_mode' ] : null;
+// Other Data
+$edit_mode = isset( $data[ 'edit_mode' ] ) ? $data[ 'edit_mode' ] : null;
 ?>
 
   <section class="pet-viewer-pet-badge card">
@@ -16,29 +16,32 @@
     <img src="<?php echo $pet->getSpecies()->getImageUrl(); ?>">
 
     <div class="pet-viewer-experience">
-      <progress class="experience-bar" value="<?php echo $pet->getExperience(); ?>" max="100"></progress>
-      <p><b>Experience: </b><?php echo $pet->getExperience(); ?>/100</p>
+      <!--<progress class="experience-bar" value="<?php echo $pet->getExperience(); ?>" max="100"></progress>-->
+      <progress class="experience-bar" value="<?php echo $pet->getExperience(); ?>" max="<?php echo floor(($pet->getExperience() / 100) + 1) * 100; ?> "></progress>
+
+      <p><b>Experience: </b><?php echo $pet->getExperience(); ?>/<?php echo floor(($pet->getExperience() / 100) + 1) * 100; ?></p>
     </div>
     <p><b>Species: </b><?php echo $pet->getSpecies()->getSpecies(); ?></p>
 
     <p><b>Type: </b><?php echo $pet->getSpecies()->getType(); ?></p>
     <?php
-      if ( isset( $edit_mode ) )
-      {
-        // Show Edit button
-        ?>
-        <form id="pet_viewer_edit" enctype="multipart/form-data" action="pet_editor.php" method="POST">
-          <input type="hidden" id="pet_id" name="pet_id" value="<?php echo $pet->getId(); ?>"/>
-          <button type="submit" class="btn btn-primary" name="edit_pet">Edit Pet</button>
-        </form>
-        <?php
-      }
+    if ( isset( $edit_mode ) )
+    {
+      // Show Edit button
+      ?>
+      <form id="pet_viewer_edit" enctype="multipart/form-data" action="pet_editor.php" method="POST">
+        <input type="hidden" id="pet_id" name="pet_id" value="<?php echo $pet->getId(); ?>"/>
+        <button type="submit" class="btn btn-primary" name="edit_pet">Edit Pet</button>
+      </form>
+      <?php
+    }
     ?>
   </section>
 
   <section class="pet-viewer-stats-badge card">
     <h2>Stats</h2>
     <ul>
+      <li><b>Level: </b><?php echo floor(($pet->getExperience() / 100) + 1) ?></li><br />
       <li><b>Brawn: </b><?php echo $pet->getBrawn() ?></li>
       <li><b>Guts: </b><?php echo $pet->getGuts() ?></li>
       <li><b>Essence: </b><?php echo $pet->getEssence() ?></li>

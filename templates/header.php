@@ -22,12 +22,10 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
     <link rel="stylesheet" type="text/css" href="css/ie.css"/>
     <![endif]-->
 
-    <script src="js/lib/modernizr.js"></script>
-
     <title><?php if ( isset( $data[ 'page_title' ] ) ) echo $data[ 'page_title' ] . " - "; ?>MorpheusPets</title>
   </head>
   <body>
-      
+
     <nav>
         <ul>
             <li><a href="index.php">Home</a></li>

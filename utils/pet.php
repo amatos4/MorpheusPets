@@ -1,17 +1,21 @@
 <?php
+
   class PetUtils
   {
     /**
      * @param User $user
-     * @param Pet $pet
+     * @param Pet  $pet
      *
      * @return bool whether user can edit the pet
      */
     public static function userCanEditPet( $user, $pet )
     {
+      $res = false;
       if ( $user && $pet && $pet->getOwner() )
       {
-        return $pet->getOwner()->getId() === $user->getId();
+        $res = $pet->getOwner()->getId() === $user->getId();
       }
+
+      return $res;
     }
   }

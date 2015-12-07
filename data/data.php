@@ -18,6 +18,7 @@
     private $addUserStatement;
     private $getUserStatement;
     private $getUserByUserNameStatement;
+    private $getNRecentUsersStatement;
     private $updateUserStatement;
     private $getLikeUsers;
 
@@ -380,6 +381,38 @@
     }
 
     /**
+     * Get a set of recently joined users
+     *
+     * @param int $count number of users
+     *
+     * @return array
+     */
+    public function getNRecentUsers( $count )
+    {
+      $ret = [ ];
+
+      // User variables
+      $id            = null;
+      $username      = null;
+      $email_address = null;
+      $description   = null;
+
+      $this->getNRecentUsersStatement->bind_param( "i", $count );
+      $this->getNRecentUsersStatement->execute();
+      $this->getNRecentUsersStatement->bind_result( $id, $username, $email_address, $description );
+
+      while ( $this->getNRecentUsersStatement->fetch() )
+      {
+        $newUser = new User( $username, $email_address, $description );
+        $newUser->setId( $id );
+
+        array_push( $ret, $newUser );
+      }
+
+      return $ret;
+    }
+
+    /**
      * Add a species
      *
      * @param Species $species
@@ -500,41 +533,47 @@
 
     /**
      * Update User information
-     * @param User $profileUser
-     * @param string $description*/
-    public function updateUser($profileUser, $description)
+     *
+     * @param User   $profileUser
+     * @param string $description
+     */
+    public function updateUser( $profileUser, $description )
     {
-      $id = $profileUser->getId();
-      $username = $profileUser->getUsername();
+      $id            = $profileUser->getId();
+      $username      = $profileUser->getUsername();
       $email_address = $profileUser->getEmailAddress();
       $password_hash = $profileUser->getPasswordHash();
 
-      $this->updateUserStatement->bind_param("ssssi", $username, $password_hash, $email_address, $description, $id);
+      $this->updateUserStatement->bind_param( "ssssi", $username, $password_hash, $email_address, $description, $id );
       $this->updateUserStatement->execute();
     }
 
     /** Search for Users Similar to the Query
+     *
      * @param string $search
-     * @return array $ret */
-    public function getLikeUsers($search)
+     *
+     * @return array $ret
+     */
+    public function getLikeUsers( $search )
     {
-      $ret = [];
+      $ret   = [ ];
       $query = null;
 
-      $id            = null;
-      $res_username  = null;
-      $description   = null;
+      $id           = null;
+      $res_username = null;
+      $description  = null;
 
-      if( sizeof($search) > 4)
+      if ( sizeof( $search ) > 4 )
       {
-        $query = substr($search, 0, 4) . "%";
+        $query = substr( $search, 0, 4 ) . "%";
 
-        $this->getLikeUsers->bind_param("s", $query);
+        $this->getLikeUsers->bind_param( "s", $query );
       }
-      else {
+      else
+      {
         $query = $search . "%";
 
-        $this->getLikeUsers->bind_param("s", $query);
+        $this->getLikeUsers->bind_param( "s", $query );
       }
 
       $this->getLikeUsers->execute();
@@ -546,7 +585,7 @@
         $user->setPasswordHash( null );
         $user->setId( $id );
 
-        array_push($ret, $user);
+        array_push( $ret, $user );
       }
 
       return $ret;
@@ -569,6 +608,7 @@
       $this->addUserStatement           = $this->dbConnection->prepare_statement( "INSERT INTO `users` (`username`, `password_hash`, `email_address`, `description`) VALUES(?, ?, ?, ?)" );
       $this->getUserStatement           = $this->dbConnection->prepare_statement( "SELECT * FROM `users` WHERE `id`=?" );
       $this->getUserByUserNameStatement = $this->dbConnection->prepare_statement( "SELECT * FROM `users` WHERE `username`=?" );
+      $this->getNRecentUsersStatement   = $this->dbConnection->prepare_statement( "SELECT `username`, `email_address`, `description` FROM `users` ORDER BY `id` DESC LIMIT ?" );
       $this->updateUserStatement        = $this->dbConnection->prepare_statement( "UPDATE `users` SET `username`=?, `password_hash`=?, `email_address`=?, `description`=? WHERE `id`=?" );
       $this->getLikeUsers               = $this->dbConnection->prepare_statement( "SELECT `id`, `username`, `description` FROM `users` WHERE `username` LIKE ?" );
 
@@ -638,6 +678,10 @@
       {
         $this->getUserByUserNameStatement->close();
       }
+      if ( $this->getNRecentUsersStatement )
+      {
+        $this->getNRecentUsersStatement->close();
+      }
       if ( $this->updateUserStatement )
       {
         $this->updateUserStatement->close();
@@ -663,7 +707,7 @@
       {
         $this->updateSpeciesStatement->close();
       }
-      if( $this->getLikeUsers )
+      if ( $this->getLikeUsers )
       {
         $this->getLikeUsers->close();
       }

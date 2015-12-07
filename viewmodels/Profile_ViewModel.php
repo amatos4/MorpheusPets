@@ -99,12 +99,13 @@
         }
 
         /** @param array $ret */
-        public function renderSearchResults( $ret )
+        public function renderSearchResults( $ret , $query )
         {
             $view_data[ 'page_title' ]         = 'User Profile';
             $view_data[ 'js' ]                 = '<script src="js/user_profile.js"></script>';
 
             $view_data[ 'search_results' ] = $ret;
+            $view_data[ 'search_query'] = $query;
 
             $this->renderTemplate( 'templates/header.php', $view_data );
             $this->renderTemplate( 'templates/search_results.php', $view_data );

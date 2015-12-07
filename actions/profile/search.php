@@ -28,10 +28,10 @@ else
 
     $ret = $data->getLikeUsers($usernameSearched);
 
-    if( !is_null($ret) )
+    if( !empty($ret) )
     {
         $viewModel = new Profile_ViewModel($loggedInUser, $profileUser);
-        $viewModel->renderSearchResults( $ret );
+        $viewModel->renderSearchResults( $ret , $usernameSearched );
     }
     else {
         //Setup view model

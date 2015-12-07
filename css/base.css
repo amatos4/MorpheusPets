@@ -140,6 +140,12 @@ nav form .form-control {
   box-shadow: 1px 1px 1px 1px #ccc;
 }
 
+.search-header {
+    color: #002a80;
+    text-decoration: underline;
+    font-size: 1.5em;
+}
+
 .profile-badge {
     width: 100%;
 }

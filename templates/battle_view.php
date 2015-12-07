@@ -109,9 +109,9 @@
 	<section class="enemy-info">
 		<h1>Enemy Team</h1>
 		<ul class="enemy_team">
-			<li class="enemy_petimg"><img src= <?php echo "images/species/". $enemy_team[0]->getSpecies()->getSpecies() . ".png"; ?> width="50" height="50" />Darius</li>
-			<li class="enemy_petimg"><img src=<?php echo "images/species/". $enemy_team[1]->getSpecies()->getSpecies() . ".png"; ?> width="50" height="50" />Arcanine</li>
-			<li class="enemy_petimg"><img src=<?php echo "images/species/". $enemy_team[2]->getSpecies()->getSpecies() . ".png"; ?> width="50" height="50" />Poliwhirl</li>
+			<li class="enemy_petimg"><img src= <?php echo "images/species/". $enemy_team[0]->getSpecies()->getSpecies() . ".png"; ?> width="50" height="50" alt="<?php $enemy_team[0]->getSpecies()->getSpecies(); ?>" /><?php $enemy_team[0]->getName(); ?></li>
+			<li class="enemy_petimg"><img src=<?php echo "images/species/". $enemy_team[1]->getSpecies()->getSpecies() . ".png"; ?> width="50" height="50" alt="<?php $enemy_team[1]->getSpecies()->getSpecies(); ?>" /><?php $enemy_team[1]->getName(); ?></li>
+			<li class="enemy_petimg"><img src=<?php echo "images/species/". $enemy_team[2]->getSpecies()->getSpecies() . ".png"; ?> width="50" height="50" alt="<?php $enemy_team[2]->getSpecies()->getSpecies(); ?>" /><?php $enemy_team[2]->getName(); ?></li>
 		</ul>
 		<ul class="enemy_stat">
 			<li><h2>Enemy Battler: <?php echo $enemy->getUsername();?></h2></li>
@@ -147,9 +147,9 @@
 			</tr>
 			<tr>
 				<td><h2>Switch Pet:</h2></td>
-				<td><a href="battle.php?switch=0"><img src=<?php echo "images/species/". $user_team[0]->getSpecies()->getSpecies() . ".png"; ?> height="50" width="50" /></td>
-				<td><a href="battle.php?switch=1"><img src=<?php echo "images/species/". $user_team[1]->getSpecies()->getSpecies() . ".png"; ?> height="50" width="50" /></td>
-				<td><a href="battle.php?switch=2"><img src=<?php echo "images/species/". $user_team[2]->getSpecies()->getSpecies() . ".png"; ?> height="50" width="50"  /></td>
+				<td><a href="battle.php?switch=0"><img src=<?php echo "images/species/". $user_team[0]->getSpecies()->getSpecies() . ".png"; ?> height="50" width="50" alt="<?php $user_team[0]->getSpecies()->getSpecies(); ?>" /></td>
+				<td><a href="battle.php?switch=1"><img src=<?php echo "images/species/". $user_team[1]->getSpecies()->getSpecies() . ".png"; ?> height="50" width="50" alt="<?php $user_team[1]->getSpecies()->getSpecies(); ?>" /></td>
+				<td><a href="battle.php?switch=2"><img src=<?php echo "images/species/". $user_team[2]->getSpecies()->getSpecies() . ".png"; ?> height="50" width="50" alt="<?php $user_team[2]->getSpecies()->getSpecies(); ?>" /></td>
 			</tr>
 		</table>
 	</section>

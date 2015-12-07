@@ -305,14 +305,14 @@ label {
 
 /*Battle CSS*/
 #container h1 {
-    font-size: 2em;   
+    font-size: 2em;
     margin-bottom: 10px;
     color: #ff5722;
     font-weight: 800;
 }
 
 #container h2 {
-    font-size: 1em;  
+    font-size: 1em;
 	margin-bottom: 5px;
     color: #ff5722;
     font-weight: 800;
@@ -320,7 +320,7 @@ label {
 
 .game_alert {
 	text-align: center;
-	font-size: 2em;   
+	font-size: 2em;
     margin-bottom: 10px;
     color: #ff5722;
     font-weight: 400;
@@ -414,6 +414,7 @@ label {
     padding: 10px 20px 10px 20px;
     text-decoration: none;
     width: auto;
+    display: inline-block;
 }
 
 .btn a{

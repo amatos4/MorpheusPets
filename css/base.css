@@ -429,13 +429,13 @@ label {
     background-image: -ms-linear-gradient(top, #d93434, #ff6f00);
     background-image: -o-linear-gradient(top, #d93434, #ff6f00);
     background-image: linear-gradient(to bottom, #d93434, #ff6f00);
-    -webkit-border-radius: 28;
-    -moz-border-radius: 28;
+    -webkit-border-radius: 28px;
+    -moz-border-radius: 28px;
     border-radius: 28px;
     font-family: Arial;
     color: #ffffff;
     font-size: 20px;
-    padding: 5px 15px 5px 15px;
+    padding: 5px 15px;
     text-decoration: none;
     width: auto;
     display: inline-block;
@@ -455,19 +455,31 @@ label {
   text-decoration: none;
 }
 
-.small-btn {
-    background: #0066ff;
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 0.85em;
-    border-radius: 5px;
-    width: auto;
-    padding: 5px;
-    display: inline-block;
+.btn-secondary {
+  background: #0066ff;
+  background-image: -webkit-linear-gradient(top, #0066ff, #5da4ff);
+  background-image: -moz-linear-gradient(top, #0066ff, #5da4ff);
+  background-image: -ms-linear-gradient(top, #0066ff, #5da4ff);
+  background-image: -o-linear-gradient(top, #0066ff, #5da4ff);
+  background-image: linear-gradient(to bottom, #0066ff, #5da4ff);
 }
 
-.small-btn a{
-    color: #ffffff;
+.btn-secondary:hover {
+  background: #5da4ff;
+  background-image: -webkit-linear-gradient(top, #5da4ff, #0066ff);
+  background-image: -moz-linear-gradient(top, #5da4ff, #0066ff);
+  background-image: -ms-linear-gradient(top, #5da4ff, #0066ff);
+  background-image: -o-linear-gradient(top, #5da4ff, #0066ff);
+  background-image: linear-gradient(to bottom, #5da4ff, #0066ff);
+  text-decoration: none;
+}
+
+.btn-small {
+    font-size: 1em;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 /* Text */

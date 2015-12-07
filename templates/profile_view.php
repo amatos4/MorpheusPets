@@ -22,11 +22,11 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
     <article class="description">
         <h1><?php echo $profile_user->getUsername() ?></h1>
         <?php if ($can_edit_bool) : ?>
-        <div id="description-btn" class="small-btn"><a href="">Edit description</a></div>
+        <div id="description-btn" class="btn btn-secondary btn-small"><a href="">Edit description</a></div>
         <form id="description-edit" class="description-edit" enctype="multipart/form-data" action="profile_editor.php" method="POST">
             <textarea id="description-text" name="description-text" type="text"><?php echo $profile_user->getDescription() ?></textarea>
             <input id="profile-user" name="profile-user" type="hidden" type="number" value=<?php echo $profile_user->getId(); ?>/>
-            <input type="submit" name="Submit"/>
+            <input class="btn btn-small" type="submit" name="Submit"/>
         </form>
         <?php endif; ?>
         <p id="user-description"><?php echo $profile_user->getDescription() ?></p>
@@ -36,7 +36,7 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
 <section class="pet-container">
     <h1>My Pet Collection</h1>
     <?php if(!empty($pet_collection) && sizeof($pet_collection) >= 3) : ?>
-    <div id="active_pet_btn" class="small-btn"><a href="">Change Active Pets</a></div>
+    <div id="active_pet_btn" class="btn btn-secondary btn-small"><a href="">Change Active Pets</a></div>
     <?php endif; ?>
     <ul id="pet-collection">
         <?php if(!empty($active_list)) : ?>
@@ -116,6 +116,6 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
         </label>
         <?php endforeach; ?>
         <input id="profileId" name="profileId" type="hidden" type="number" value=<?php echo $profile_user->getId() ?>/>
-        <input type="submit" name="Submit" />
+        <input class="btn btn-small" type="submit" name="Submit" />
     </form>
 </section>

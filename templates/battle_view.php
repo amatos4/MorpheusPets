@@ -127,10 +127,9 @@
 	</section>
 
 	<section class="battlefield">
-        <h1>&#x2063;</h1>
-		<img src=<?php echo "images/species/". $user_Pet->getSpecies()->getSpecies() . ".png"; ?> width="350" height="350" alt="<?php echo $user_Pet->getSpecies()->getSpecies(); ?>" style="position: absolute; top: 115px; left: 25%;" />
-		<img src=<?php echo "images/species/". $enemy_Pet->getSpecies()->getSpecies() . "_enemy.png"; ?> width="350" height="350" alt="<?php echo $enemy_Pet->getSpecies()->getSpecies(); ?>" style="position: relative; top: 70px; left: 15%;" />
-		<img src="images/field.png" alt="field" style="position: relative; top: 0; left: 0; z-index: -1;" />
+		<img src=<?php echo "images/species/". $user_Pet->getSpecies()->getSpecies() . ".png"; ?> width="200" height="200" alt="<?php echo $user_Pet->getSpecies()->getSpecies(); ?>" style="position: absolute; top: 70px; left: 30%;" />
+		<img src=<?php echo "images/species/". $enemy_Pet->getSpecies()->getSpecies() . "_enemy.png"; ?> width="200" height="200" alt="<?php echo $enemy_Pet->getSpecies()->getSpecies(); ?>" style="position: relative; top: 70px; left: 15%; z-index: -1;" />
+		<img src="images/field.png" alt="field" style="position: relative; top: 0; left: 0; z-index: -2;" />
 	</section>
 
 	<p id="game_alert" class="game_alert"><?php echo $alert; ?></p>
@@ -150,7 +149,6 @@
 				<td><div class="btn"><a href="battle.php?attack=true" >Attack</a></div></td>
 				<td><div class="btn" ><a href="battle.php?magic=true" >Magic Attack</a></div></td>
 				<td><div class="btn" ><a href="battle.php?defend=true" >Defend</a></div></td><td></td>
-        <td></td>
 			</tr>
 			<tr>
 				<td><h2>Switch Pet:</h2></td>

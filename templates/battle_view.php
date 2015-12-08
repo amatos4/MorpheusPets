@@ -128,9 +128,8 @@
 
 	<section class="battlefield">
         <h1>&#x2063;</h1>
-		<img src=<?php echo "images/species/". $user_Pet->getSpecies()->getSpecies() . ".png"; ?> width="350" height="350" alt="<?php echo $user_Pet->getSpecies()->getSpecies(); ?>" style="position: absolute; top: 100px; left: 300px;" />
-		<img src=<?php echo "images/species/". $user_Pet->getSpecies()->getSpecies() . ".png"; ?> width="350" height="350" alt="<?php echo $user_Pet->getSpecies()->getSpecies(); ?>" style="position: absolute; top: 70px; left: 300px;" />
-		<img src=<?php echo "images/species/". $enemy_Pet->getSpecies()->getSpecies() . "_enemy.png"; ?> width="350" height="350" alt="<?php echo $enemy_Pet->getSpecies()->getSpecies(); ?>" style="position: relative; top: 70px; left: 200px;" />
+		<img src=<?php echo "images/species/". $user_Pet->getSpecies()->getSpecies() . ".png"; ?> width="350" height="350" alt="<?php echo $user_Pet->getSpecies()->getSpecies(); ?>" style="position: absolute; top: 115px; left: 25%;" />
+		<img src=<?php echo "images/species/". $enemy_Pet->getSpecies()->getSpecies() . "_enemy.png"; ?> width="350" height="350" alt="<?php echo $enemy_Pet->getSpecies()->getSpecies(); ?>" style="position: relative; top: 70px; left: 15%;" />
 		<img src="images/field.png" alt="field" style="position: relative; top: 0; left: 0; z-index: -1;" />
 	</section>
 

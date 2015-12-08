@@ -10,7 +10,14 @@
   <div class='text'>
   <div class='content'></div>
   <div class='dash'></div>
-</div>
+    <h2><?php echo $header_description; ?></h2>
+    <?php
+    $recent_users = $data[ 'recent_users' ];
+   foreach ($recent_users as $key => $value) {
+     echo "<section class=\"recent-user card\">";
+   }
+    ?>
+
 <script src="./thrill.js"></script>
 </body>
 </html>

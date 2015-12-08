@@ -290,8 +290,28 @@ animation: fadein 2s;
     opacity: 1;
   }
 }
+/*Recent User cards*/
+.recent-user{
+  width: 50%;
+  float: left;
+}
 
+.recent-user-details-container {
+  position: relative;
+  width: 40%;
+  float: right;
+}
 
+.recent-user-details-container h3 {
+  padding-top: 15px;
+  text-align: center;
+}
+
+.recent-user-details-container img {
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+}
 /* media queries */
 @media screen and (max-width: 1024px) {
 

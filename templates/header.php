@@ -8,14 +8,7 @@
 
 ?>
 <!DOCTYPE html>
-<!--[if IE 7]>
-<html class="ie ie7" lang="en"><![endif]-->
-<!--[if IE 8]>
-<html class="ie ie8" lang="en"><![endif]-->
-<!--[if IE 9]>
-<html class="ie ie9" lang="en"><![endif]-->
-<!--[if gt IE 9]><!-->
-<html class="no-js" lang="en"><!--<![endif]-->
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -24,10 +17,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 
     <link rel="stylesheet" href="css/base.css">
-
-    <!--[if lte IE 8]>
-    <link rel="stylesheet" type="text/css" href="css/ie.css"/>
-    <![endif]-->
 
     <title><?php if ( isset( $data[ 'page_title' ] ) ) echo $data[ 'page_title' ] . " - "; ?>MorpheusPets</title>
   </head>
@@ -38,7 +27,6 @@
         <li class><a href="index.php">Home</a></li>
 
         <?php if ( $logged_in_user !== null ) : ?>
-<!--          <li><a href="my_profile.php?profileId=--><?php //echo $logged_in_user->getId() ?><!--">--><?php //echo $logged_in_user->getUsername();?><!--</a></li>-->
           <li><a href="pet_editor.php">Create Pet</a></li>
 
           <?php if ( $battle !== null ) : ?>

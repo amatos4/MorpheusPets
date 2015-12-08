@@ -35,7 +35,7 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
 
 <section class="pet-container">
     <h1>My Pet Collection</h1>
-    <?php if(!empty($pet_collection) && sizeof($pet_collection) >= 3) : ?>
+    <?php if(!empty($pet_collection) && sizeof($pet_collection) >= 3 && $can_edit_bool ): ?>
     <div id="active_pet_btn" class="btn btn-secondary btn-small"><a href="">Change Active Pets</a></div>
     <?php endif; ?>
     <ul id="pet-collection">

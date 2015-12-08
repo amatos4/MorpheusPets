@@ -17,6 +17,7 @@
     public function renderTemplate( $template, $data = null )
     {
       $data[ 'logged_in_user' ] = $this->session->getLoggedInUser();
+      $data[ 'battle' ] = $this->session->getBattle();
 
       include $template;
     }

@@ -17,7 +17,7 @@ $edit_mode = isset( $data[ 'edit_mode' ] ) ? $data[ 'edit_mode' ] : null;
 
     <div class="pet-viewer-experience">
       <!--<progress class="experience-bar" value="<?php echo $pet->getExperience(); ?>" max="100"></progress>-->
-      <progress class="experience-bar" value="<?php echo $pet->getExperience(); ?>" max="<?php echo floor(($pet->getExperience() / 100) + 1) * 100; ?> "></progress>
+      <progress class="experience-bar" value="<?php echo ($pet->getExperience()); ?>" max="<?php echo (floor(($pet->getExperience() / 100) + 1) * 100); ?>"></progress>
 
       <p><b>Experience: </b><?php echo $pet->getExperience(); ?>/<?php echo floor(($pet->getExperience() / 100) + 1) * 100; ?></p>
     </div>

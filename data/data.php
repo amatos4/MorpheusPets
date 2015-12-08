@@ -608,7 +608,7 @@
       $this->addUserStatement           = $this->dbConnection->prepare_statement( "INSERT INTO `users` (`username`, `password_hash`, `email_address`, `description`) VALUES(?, ?, ?, ?)" );
       $this->getUserStatement           = $this->dbConnection->prepare_statement( "SELECT * FROM `users` WHERE `id`=?" );
       $this->getUserByUserNameStatement = $this->dbConnection->prepare_statement( "SELECT * FROM `users` WHERE `username`=?" );
-      $this->getNRecentUsersStatement   = $this->dbConnection->prepare_statement( "SELECT `username`, `email_address`, `description` FROM `users` ORDER BY `id` DESC LIMIT ?" );
+      $this->getNRecentUsersStatement   = $this->dbConnection->prepare_statement( "SELECT `id`, `username`, `email_address`, `description` FROM `users` ORDER BY `id` DESC LIMIT ?" );
       $this->updateUserStatement        = $this->dbConnection->prepare_statement( "UPDATE `users` SET `username`=?, `password_hash`=?, `email_address`=?, `description`=? WHERE `id`=?" );
       $this->getLikeUsers               = $this->dbConnection->prepare_statement( "SELECT `id`, `username`, `description` FROM `users` WHERE `username` LIKE ?" );
 

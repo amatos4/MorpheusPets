@@ -7,6 +7,8 @@
 
     private $logged_in_user = null;
 
+    private $battle = null;
+
     private $data;
 
     private static $instance;
@@ -58,6 +60,9 @@
 
         // Get user information if logged in
         $this->logged_in_user = is_null( $logged_in_user_id ) ? null : $this->data->getUser( $logged_in_user_id );
+
+        // Get battle information
+        $this->battle = isset( $_SESSION[ 'battle' ] ) ? $_SESSION[ 'battle' ] : null;
       }
     }
 
@@ -97,5 +102,29 @@
     public function isUserLoggedIn()
     {
       return $this->user_logged_in;
+    }
+
+    /**
+     * @return Battle|null
+     */
+    public function getBattle()
+    {
+      return $this->battle;
+    }
+
+    /**
+     * @param Battle $battle
+     */
+    public function setBattle( $battle )
+    {
+      $this->battle = $battle;
+    }
+
+    /**
+     * @return bool whether the user is currently in battle
+     */
+    public function isUserInBattle()
+    {
+      return $this->battle !== null;
     }
   }

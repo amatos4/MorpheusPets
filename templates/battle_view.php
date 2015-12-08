@@ -96,7 +96,7 @@
 		$user_health = $battle->getUserHealth();
 		$enemy_health = $battle->getEnemyHealth();
 
-		if(!isset($_SESSION['conclusion'])) { 
+		if(!isset($_SESSION['conclusion'])) {
 			$conclusion = $battle->checkConclusion();
 			if($conclusion[0] == true) {
 				$alert .= $conclusion[1];
@@ -149,6 +149,7 @@
 				<td><div class="btn"><a href="battle.php?attack=true" >Attack</a></div></td>
 				<td><div class="btn" ><a href="battle.php?magic=true" >Magic Attack</a></div></td>
 				<td><div class="btn" ><a href="battle.php?defend=true" >Defend</a></div></td>
+        <td></td>
 			</tr>
 			<tr>
 				<td><h2>Switch Pet:</h2></td>

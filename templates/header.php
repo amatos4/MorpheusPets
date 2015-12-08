@@ -38,7 +38,7 @@
         <li class><a href="index.php">Home</a></li>
 
         <?php if ( $logged_in_user !== null ) : ?>
-          <li><a href="my_profile.php?profileId=<?php echo $logged_in_user->getId() ?>">My Profile</a></li>
+<!--          <li><a href="my_profile.php?profileId=--><?php //echo $logged_in_user->getId() ?><!--">--><?php //echo $logged_in_user->getUsername();?><!--</a></li>-->
           <li><a href="pet_editor.php">Create Pet</a></li>
 
           <?php if ( $battle !== null ) : ?>
@@ -63,6 +63,7 @@
             <li><a href="login.php">Login</a></li>
             <li><a href="register.php">Register</a></li>
           <?php else: ?>
+            <li><a href="my_profile.php?profileId=<?php echo $logged_in_user->getId() ?>">My Profile</a></li>
             <li><a href="logout.php">Logout</a></li>
           <?php endif; ?>
         </ul>

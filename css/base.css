@@ -334,20 +334,6 @@ label {
 }
 
 /*Battle CSS*/
-#container h1 {
-    font-size: 2em;
-    margin-bottom: 10px;
-    color: #ff5722;
-    font-weight: 800;
-}
-
-#container h2 {
-    font-size: 1em;
-	margin-bottom: 5px;
-    color: #ff5722;
-    font-weight: 800;
-}
-
 .game_alert {
 	text-align: center;
 	font-size: 2em;
@@ -362,6 +348,20 @@ label {
 
 .enemy-info {
     list-style: none;
+}
+
+.enemy-info h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #ff5722;
+    font-weight: 800;
+}
+
+.enemy-info h2 {
+    font-size: 1em;
+	margin-bottom: 5px;
+    color: #ff5722;
+    font-weight: 800;
 }
 
 .enemy_petimg {
@@ -383,6 +383,20 @@ label {
     box-shadow: 1px 1px 1px 1px #ccc;
 }
 
+.enemy_team h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #ff5722;
+    font-weight: 800;
+}
+
+.enemy_team h2 {
+    font-size: 1em;
+	margin-bottom: 5px;
+    color: #ff5722;
+    font-weight: 800;
+}
+
 .enemy_stat {
 	float: right;
 	padding: 5px;
@@ -392,6 +406,20 @@ label {
 	-webkit-box-shadow: 1px 1px 1px 1px #ccc;
     -moz-box-shadow: 1px 1px 1px 1px #ccc;
     box-shadow: 1px 1px 1px 1px #ccc;
+}
+
+.enemy_stat h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #ff5722;
+    font-weight: 800;
+}
+
+.enemy_stat h2 {
+    font-size: 1em;
+	margin-bottom: 5px;
+    color: #ff5722;
+    font-weight: 800;
 }
 
 .battlefield {
@@ -421,6 +449,20 @@ label {
     box-shadow: 1px 1px 1px 1px #ccc;
 }
 
+.player_actions h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #ff5722;
+    font-weight: 800;
+}
+
+.player_actions h2 {
+    font-size: 1em;
+	margin-bottom: 5px;
+    color: #ff5722;
+    font-weight: 800;
+}
+
 .player_stats {
 	float: left;
 	padding: 5px;
@@ -430,6 +472,20 @@ label {
 	-webkit-box-shadow: 1px 1px 1px 1px #ccc;
     -moz-box-shadow: 1px 1px 1px 1px #ccc;
     box-shadow: 1px 1px 1px 1px #ccc;
+}
+
+.player_stats h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #ff5722;
+    font-weight: 800;
+}
+
+.player_stats h2 {
+    font-size: 1em;
+	margin-bottom: 5px;
+    color: #ff5722;
+    font-weight: 800;
 }
 
 #logo{

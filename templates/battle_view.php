@@ -77,20 +77,25 @@
 			}
 		}
 		else if(isset($_GET['switch'])) {
-			if($battle->getPetHealth($_GET['switch'])[0] > 0) {
-				if($_GET['switch'] != $activeUser) {
-					$alert = $battle->switchPet(0, $_GET['switch']);
-					$activeUser = $battle->getActivePet();
-					$user_Pet =  $user_team[$activeUser];
-					$activeEnemy = $battle->getEnemyPet();
-					$enemy_Pet = $enemy_team[$activeEnemy];
+			if($_GET['switch'] < 3 && $_GET['switch'] > -1) {
+				if($battle->getPetHealth($_GET['switch'])[0] > 0) {
+					if($_GET['switch'] != $activeUser) {
+						$alert = $battle->switchPet(0, $_GET['switch']);
+						$activeUser = $battle->getActivePet();
+						$user_Pet =  $user_team[$activeUser];
+						$activeEnemy = $battle->getEnemyPet();
+						$enemy_Pet = $enemy_team[$activeEnemy];
+					}
+					else {
+						$alert = "You can't switch to a pet that's already in battle!";
+					}
 				}
 				else {
-					$alert = "You can't switch to a pet that's already in battle!";
+					$alert = "You cannot switch into a knocked out pet!";
 				}
 			}
 			else {
-				$alert = "You cannot switch into a knocked out pet!";
+				$alert = "Don't try to break my game!";
 			}
 		}
 		$user_health = $battle->getUserHealth();

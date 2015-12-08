@@ -26,7 +26,6 @@
     public function renderFailSearch( $username )
     {
       $view_data[ 'page_title' ] = 'User Not Found';
-      $view_data[ 'js' ]         = '<script src="js/error_page.js"></script>';
 
       $view_data[ 'username_not_found' ] = $username;
 
@@ -43,7 +42,6 @@
     public function renderUserNotExist( $id )
     {
       $view_data[ 'page_title' ] = 'User Not Found';
-      $view_data[ 'js' ]         = '<script src="js/error_page.js"></script>';
 
       $view_data[ 'user_id_not_found' ] = $id;
 
@@ -60,7 +58,6 @@
     public function renderPetNotExist( $id )
     {
       $view_data[ 'page_title' ] = 'Pet Not Found';
-      $view_data[ 'js' ]         = '<script src="js/error_page.js"></script>';
 
       $view_data[ 'pet_id_not_found' ] = $id;
 
@@ -77,7 +74,6 @@
     public function renderEditPetNotAllowed( $pet )
     {
       $view_data[ 'page_title' ] = 'Pet Edit Not Allowed';
-      $view_data[ 'js' ]         = '<script src="js/error_page.js"></script>';
 
       $view_data[ 'pet_edit_not_allowed' ] = $pet;
 
@@ -89,7 +85,6 @@
     public function renderEditActivePetsNotAllowed( $id )
     {
       $view_data[ 'page_title' ] = 'Active Pet Edit Not Allowed';
-      $view_data[ 'js' ]         = '<script src="js/error_page.js"></script>';
 
       $view_data['active_edit_not_allowed'] = $id;
 
@@ -101,7 +96,6 @@
     public function renderNoPetsToSet( )
   {
     $view_data[ 'page_title' ] = 'No Pets To Set';
-    $view_data[ 'js' ]         = '<script src="js/error_page.js"></script>';
 
     $view_data['no_pets'] = true;
 
@@ -113,7 +107,6 @@
     public function renderDeletePetFailed( $pet )
     {
       $view_data[ 'page_title' ] = 'Delete Pet Failed';
-      $view_data[ 'js' ]         = '<script src="js/error_page.js"></script>';
 
       $view_data['pet_delete_failed'] = $pet;
 

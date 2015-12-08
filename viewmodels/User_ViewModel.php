@@ -38,7 +38,6 @@
 
       // View Config
       $view_data[ 'page_title' ] = 'Log In';
-      $view_data[ 'js' ]         = '<script src="js/login.js"></script>';
 
       // Fill in view data
       if ( $form_username !== null )
@@ -126,7 +125,6 @@
 
       // View Config
       $view_data[ 'page_title' ] = 'Register';
-      $view_data[ 'js' ]         = '<script src="js/register.js"></script>';
 
       // Fill in view data
       if ( $form_username !== null )

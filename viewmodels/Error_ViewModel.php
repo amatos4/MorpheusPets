@@ -76,7 +76,7 @@
      */
     public function renderEditPetNotAllowed( $pet )
     {
-      $view_data[ 'page_title' ] = 'Pet Not Found';
+      $view_data[ 'page_title' ] = 'Pet Edit Not Allowed';
       $view_data[ 'js' ]         = '<script src="js/error_page.js"></script>';
 
       $view_data[ 'pet_edit_not_allowed' ] = $pet;
@@ -88,7 +88,7 @@
 
     public function renderEditActivePetsNotAllowed( $id )
     {
-      $view_data[ 'page_title' ] = 'Pet Not Found';
+      $view_data[ 'page_title' ] = 'Active Pet Edit Not Allowed';
       $view_data[ 'js' ]         = '<script src="js/error_page.js"></script>';
 
       $view_data['active_edit_not_allowed'] = $id;
@@ -100,7 +100,7 @@
 
     public function renderNoPetsToSet( )
   {
-    $view_data[ 'page_title' ] = 'Pet Not Found';
+    $view_data[ 'page_title' ] = 'No Pets To Set';
     $view_data[ 'js' ]         = '<script src="js/error_page.js"></script>';
 
     $view_data['no_pets'] = true;
@@ -109,5 +109,17 @@
     $this->renderTemplate( 'templates/error_view.php', $view_data );
     $this->renderTemplate( 'templates/footer.php', $view_data );
   }
+
+    public function renderDeletePetFailed( $pet )
+    {
+      $view_data[ 'page_title' ] = 'Delete Pet Failed';
+      $view_data[ 'js' ]         = '<script src="js/error_page.js"></script>';
+
+      $view_data['pet_delete_failed'] = $pet;
+
+      $this->renderTemplate( 'templates/header.php', $view_data );
+      $this->renderTemplate( 'templates/error_view.php', $view_data );
+      $this->renderTemplate( 'templates/footer.php', $view_data );
+    }
 
   }

@@ -14,18 +14,18 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
 ?>
 
 <?php if (!$can_edit_bool && !empty($active_list) && !is_null($logged_in_user) && (count($active_list) == 3) ) : ?>
-<div class="btn" xmlns="http://www.w3.org/1999/html"><a href="battle.php?enemyId=<?php echo $_GET['profileId'] ?>">Start Battle!</a></div>
+<div class="btn"><a href="battle.php?enemyId=<?php echo $_GET['profileId'] ?>">Start Battle!</a></div>
 <?php endif; ?>
 
 <section class="profile-badge">
-    <img src="images/avatar_blank.png"/>
+    <img src="images/avatar_blank.png" alt="avatar image"/>
     <article class="description">
         <h1><?php echo $profile_user->getUsername() ?></h1>
         <?php if ($can_edit_bool) : ?>
         <div id="description-btn" class="btn btn-secondary btn-small"><a href="">Edit description</a></div>
         <form id="description-edit" class="description-edit" enctype="multipart/form-data" action="profile_editor.php" method="POST">
-            <textarea id="description-text" name="description-text" type="text"><?php echo $profile_user->getDescription() ?></textarea>
-            <input id="profile-user" name="profile-user" type="hidden" type="number" value=<?php echo $profile_user->getId(); ?>/>
+            <textarea id="description-text" name="description-text"><?php echo $profile_user->getDescription() ?></textarea>
+            <input id="profile-user" name="profile-user" type="hidden" value=<?php echo $profile_user->getId(); ?>/>
             <input class="btn btn-small" type="submit" name="Submit"/>
         </form>
         <?php endif; ?>
@@ -42,8 +42,8 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
         <?php if(!empty($active_list)) : ?>
             <?php /** @var Pet $active_pet */foreach ( $active_list as $active_pet ) : ?>
                 <li class="pet-badge-active card">
-                    <a href="pet.php?pet_id=<?php echo $active_pet->getId()?>"><img src="<?php echo $active_pet->getSpecies()->getImageUrl()?>" /></a>
-                    <div class="pet-stats" />
+                    <a href="pet.php?pet_id=<?php echo $active_pet->getId()?>"><img src="<?php echo $active_pet->getSpecies()->getImageUrl()?>" alt="<?php echo $active_pet->getSpecies()->getSpecies(); ?> image"/></a>
+                    <div class="pet-stats">
                         <h2><?php echo $active_pet->getName()?></h2>
                         <p><b>Level: </b><?php echo floor(($active_pet->getExperience() / 100) + 1) ?></p>
                         <p><b>Species: </b><?php echo $active_pet->getSpecies()->getSpecies()?></p>
@@ -61,8 +61,8 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
         <?php if(!empty($non_active_list)) : ?>
             <?php /** @var Pet $non_active_pet */foreach ( $non_active_list as $non_active_pet ) : ?>
                 <li class="pet-badge card">
-                    <a href="pet.php?pet_id=<?php echo $non_active_pet->getId()?>"><img src="<?php echo $non_active_pet->getSpecies()->getImageUrl()?>" /></a>
-                    <div class="pet-stats" />
+                    <a href="pet.php?pet_id=<?php echo $non_active_pet->getId()?>"><img src="<?php echo $non_active_pet->getSpecies()->getImageUrl()?>" alt="<?php echo $non_active_pet->getSpecies()->getSpecies(); ?> image"/></a>
+                    <div class="pet-stats">
                         <h2><?php echo $non_active_pet->getName()?></h2>
                         <p><b>Level: </b><?php echo floor(($non_active_pet->getExperience() / 100) + 1) ?></p>
                         <p><b>Species: </b><?php echo $non_active_pet->getSpecies()->getSpecies()?></p>
@@ -88,7 +88,7 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
         <input name="active[]" type="checkbox" value=<?php echo $pet->getId() ?> />
         <label for=<?php echo $pet->getId() ?>>
             <div class="pet-badge card">
-                <a href="pet.php?pet_id=<?php echo $pet->getId()?>"><img src="<?php echo $pet->getSpecies()->getImageUrl()?>" /></a>
+                <a href="pet.php?pet_id=<?php echo $pet->getId()?>"><img src="<?php echo $pet->getSpecies()->getImageUrl()?>" alt="<?php echo $pet->getSpecies()->getSpecies(); ?> image"/></a>
                 <div class="pet-stats">
                     <h2><?php echo $pet->getName() ?></h2>
                     <p><b>Level: </b><?php echo floor(($pet->getExperience() / 100) + 1) ?></p>
@@ -118,7 +118,7 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
             </div>
         </label>
         <?php endforeach; ?>
-        <input id="profileId" name="profileId" type="hidden" type="number" value=<?php echo $profile_user->getId() ?>/>
+        <input id="profileId" name="profileId" type="hidden" value=<?php echo $profile_user->getId() ?>/>
         <input class="btn btn-small" type="submit" name="Submit" />
     </form>
 </section>

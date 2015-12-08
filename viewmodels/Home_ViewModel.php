@@ -3,7 +3,7 @@
 
   class Home_ViewModel extends ViewModel
   {
-    private $user_list = [ ];
+    private $user_list = [];
 
     /*
      * Render the home page
@@ -19,6 +19,7 @@
       $this->renderTemplate( 'templates/footer.php', $view_data );
     }
 
+    /** Add users and active pets to list */
     public function addRecentUsers( $users )
     {
       if ( isset( $users ) )

@@ -130,6 +130,34 @@ nav form .form-control {
     overflow: hidden;
 }
 
+.right-container {
+    float: right;
+    position: relative;
+    width: 40%;
+}
+
+.right-container a {
+    font-size: 1.5em;
+    color: #ff6f00;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.right-container img {
+    display: inline;
+}
+
+.news-container {
+    float: left;
+    width: 50%;
+}
+
+.news-container img {
+    width: 200px;
+    padding: 20px;
+    margin: auto auto;
+}
+
 .card {
   background-color: #FFF;
   margin: 10px;
@@ -539,10 +567,10 @@ label {
   height: 50px;
   line-height: 50px;
   font-size: 30px;
-  position: absolute;
+  /*position: absolute;*/
   top: 0;
   bottom: 0;
-  margin: 350px -125px;
+  padding-bottom: 100px;
 }
 .text .content {
   display: inline;

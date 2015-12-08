@@ -31,7 +31,7 @@ $edit_mode = isset( $data[ 'edit_mode' ] ) ? $data[ 'edit_mode' ] : null;
       ?>
       <form id="pet_viewer_edit" enctype="multipart/form-data" action="pet_editor.php" method="POST">
         <input type="hidden" id="pet_id" name="pet_id" value="<?php echo $pet->getId(); ?>"/>
-        <button type="submit" class="btn btn-primary" name="edit_pet">Edit Pet</button>
+        <button type="submit" class="btn" name="edit_pet">Edit Pet</button>
       </form>
       <?php
     }

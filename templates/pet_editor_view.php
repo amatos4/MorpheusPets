@@ -76,7 +76,7 @@
       </div>
 
 
-      <button type="submit" class="btn btn-primary" name="submit"><?php echo $submit_button_text ?></button>
+      <button type="submit" class="btn" name="submit"><?php echo $submit_button_text ?></button>
     </form>
   </section>
 

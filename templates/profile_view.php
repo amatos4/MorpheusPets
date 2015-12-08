@@ -45,6 +45,7 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
                     <a href="pet.php?pet_id=<?php echo $active_pet->getId()?>"><img src="<?php echo $active_pet->getSpecies()->getImageUrl()?>" /></a>
                     <div class="pet-stats" />
                         <h2><?php echo $active_pet->getName()?></h2>
+                        <p><b>Level: </b><?php echo floor(($active_pet->getExperience() / 100) + 1) ?></p>
                         <p><b>Species: </b><?php echo $active_pet->getSpecies()->getSpecies()?></p>
                         <p><b>Type: </b> <?php echo $active_pet->getSpecies()->getType()?></p>
                         <p><?php
@@ -63,6 +64,7 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
                     <a href="pet.php?pet_id=<?php echo $non_active_pet->getId()?>"><img src="<?php echo $non_active_pet->getSpecies()->getImageUrl()?>" /></a>
                     <div class="pet-stats" />
                         <h2><?php echo $non_active_pet->getName()?></h2>
+                        <p><b>Level: </b><?php echo floor(($non_active_pet->getExperience() / 100) + 1) ?></p>
                         <p><b>Species: </b><?php echo $non_active_pet->getSpecies()->getSpecies()?></p>
                         <p><b>Type: </b> <?php echo $non_active_pet->getSpecies()->getType()?></p>
                         <p><?php
@@ -89,6 +91,7 @@ $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ]
                 <a href="pet.php?pet_id=<?php echo $pet->getId()?>"><img src="<?php echo $pet->getSpecies()->getImageUrl()?>" /></a>
                 <div class="pet-stats">
                     <h2><?php echo $pet->getName() ?></h2>
+                    <p><b>Level: </b><?php echo floor(($pet->getExperience() / 100) + 1) ?></p>
                     <p><b>Species: </b><?php echo $pet->getSpecies()->getSpecies() ?></p>
                     <p><b>Type: </b><?php echo $pet->getSpecies()->getType() ?></p>
                     <table>

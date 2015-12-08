@@ -68,7 +68,7 @@
       $view_data[ 'header_title' ]       = 'Pet Creator';
       $view_data[ 'header_description' ] = 'Create a New Pet';
       $view_data[ 'submit_button_text' ] = 'Create Pet';
-      $view_data[ 'js' ]                 = '<script src="js/pet_editor.js"></script><script src="js/create_pet.js"></script>';
+      $view_data[ 'js' ]                 = '<script src="js/pet_editor.js"></script>';
 
       $view_data = $this->editPet( $view_data, true );
 

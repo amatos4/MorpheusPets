@@ -3,6 +3,9 @@
   /** @var User $logged_in_user */
   $logged_in_user = isset( $data[ 'logged_in_user' ] ) ? $data[ 'logged_in_user' ] : null;
 
+  /** @var Battle $battle */
+  $battle = isset( $data[ 'battle' ] ) ? $data[ 'battle' ] : null;
+
 ?>
 <!DOCTYPE html>
 <!--[if IE 7]>
@@ -33,9 +36,15 @@
     <nav>
       <ul class="navbar-left">
         <li class><a href="index.php">Home</a></li>
+
         <?php if ( $logged_in_user !== null ) : ?>
           <li><a href="my_profile.php?profileId=<?php echo $logged_in_user->getId() ?>">My Profile</a></li>
           <li><a href="pet_editor.php">Create Pet</a></li>
+
+          <?php if ( $battle !== null ) : ?>
+            <li><a href="battle.php">Return to Battle!</a></li>
+          <?php endif; ?>
+
         <?php endif; ?>
       </ul>
 

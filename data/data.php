@@ -14,6 +14,7 @@
     private $getAllPetsForUserStatement;
     private $getActivePetsForUserStatement;
     private $updatePetStatement;
+    private $deletePetStatement;
 
     private $addUserStatement;
     private $getUserStatement;
@@ -282,6 +283,20 @@
       $this->updatePetStatement->bind_param( "siiiiiiiii", $name, $experience, $brawn, $guts, $essence, $speed, $focus, $grit, $active, $id );
 
       return $this->updatePetStatement->execute();
+    }
+
+    /**
+     * Delete a pet by id
+     *
+     * @param int $id
+     *
+     * @return bool
+     */
+    public function deletePet( $id )
+    {
+      $this->deletePetStatement->bind_param( "i", $id );
+
+      return $this->deletePetStatement->execute();
     }
 
     /**
@@ -604,6 +619,7 @@
       $this->getAllPetsForUserStatement    = $this->dbConnection->prepare_statement( "SELECT `user_pets`.`id`, `user_pets`.`owner_id`, `user_pets`.`species_id`, `user_pets`.`name`, `user_pets`.`experience`, `user_pets`.`brawn`, `user_pets`.`guts`, `user_pets`.`essence`, `user_pets`.`speed`, `user_pets`.`focus`, `user_pets`.`grit`, `user_pets`.`active`, `users`.`username`, `users`.`email_address`, `users`.`description`, `species`.`species`, `species`.`type`, `species`.`stats` FROM `user_pets` INNER JOIN `users` ON `user_pets`.`owner_id` = `users`.`id` INNER JOIN `species` ON `user_pets`.`species_id` = `species`.`id` WHERE `users`.`id`=?" );
       $this->getActivePetsForUserStatement = $this->dbConnection->prepare_statement( "SELECT `user_pets`.`id`, `user_pets`.`owner_id`, `user_pets`.`species_id`, `user_pets`.`name`, `user_pets`.`experience`, `user_pets`.`brawn`, `user_pets`.`guts`, `user_pets`.`essence`, `user_pets`.`speed`, `user_pets`.`focus`, `user_pets`.`grit`, `user_pets`.`active`, `users`.`username`, `users`.`email_address`, `users`.`description`, `species`.`species`, `species`.`type`, `species`.`stats` FROM `user_pets` INNER JOIN `users` ON `user_pets`.`owner_id` = `users`.`id` INNER JOIN `species` ON `user_pets`.`species_id` = `species`.`id` WHERE `user_pets`.`owner_id`=? AND `user_pets`.`active`=TRUE" );
       $this->updatePetStatement            = $this->dbConnection->prepare_statement( "UPDATE `user_pets` SET `name`=?, `experience`=?, `brawn`=?, `guts`=?, `essence`=?, `speed`=?, `focus`=?, `grit`=?, `active`=? WHERE `id`=?" );
+      $this->deletePetStatement            = $this->dbConnection->prepare_statement( "DELETE FROM `user_pets` WHERE `id` = ?" );
 
       $this->addUserStatement           = $this->dbConnection->prepare_statement( "INSERT INTO `users` (`username`, `password_hash`, `email_address`, `description`) VALUES(?, ?, ?, ?)" );
       $this->getUserStatement           = $this->dbConnection->prepare_statement( "SELECT * FROM `users` WHERE `id`=?" );
@@ -664,6 +680,10 @@
       if ( $this->updatePetStatement )
       {
         $this->updatePetStatement->close();
+      }
+      if ( $this->deletePetStatement )
+      {
+        $this->deletePetStatement->close();
       }
 
       if ( $this->addUserStatement )
